@@ -33,9 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ArgbPixelPointer.cs" />
-    <Compile Include="BitmapStream.cs" />
-    <Compile Include="IPixelPointer.cs" />
+    <Compile Include="BitmapProcessing\Argb32PixelPointer.cs" />
+    <Compile Include="BitmapProcessing\Rgb24PixelPointer.cs" />
+    <Compile Include="BitmapProcessing\Rgb32PixelPointer.cs" />
+    <Compile Include="BitmapSource.cs" />
+    <Compile Include="BitmapProcessing\IPixelPointer.cs" />
+    <Compile Include="ColorSource.cs" />
     <Compile Include="IPixelStream.cs" />
     <Compile Include="PixelColor.cs" />
     <Compile Include="PixelStream.cs" />

@@ -4,4 +4,5 @@ ImageOps
 Version 1.0.0
 -------------------------------------------
 + Added base project structure
-+ Added implementation of BitmapStream for PixelFormat.Format32bppArgb bitmaps
++ Added implementation of BitmapSource for PixelFormat.Format32bppArgb, PixelFormat.Format32bppRgb, PixelFormat.Format24bppRgb bitmaps
++ Added implementation of ColorSource

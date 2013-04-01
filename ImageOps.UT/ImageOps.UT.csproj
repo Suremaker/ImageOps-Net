@@ -38,8 +38,10 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArgbBitmapStreamTests.cs" />
+    <Compile Include="BitmapStreamTestBase.cs" />
+    <Compile Include="BitmapStreamTests.cs" />
     <Compile Include="PixelColorTests.cs" />
+    <Compile Include="PixelStreamTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
