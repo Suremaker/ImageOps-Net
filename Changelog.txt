@@ -8,3 +8,4 @@ Version 1.0.0
 + Added implementation of ColorSource
 + Added NormalBlend and MultiplyBlend
 + Added BitmapWriter class with extension methods for IPixelStream
++ Added ImageOps.Example project

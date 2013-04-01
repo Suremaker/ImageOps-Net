@@ -52,12 +52,12 @@ namespace ImageOps.Blending
 		{
 			var alpha1 = back.GetAlpha();
 			var alpha2 = front.GetAlpha();
-
+			var alpha3 = alpha1 + alpha2 - alpha1 * alpha2;
 			return PixelColor.FromFargb(
-				alpha1 + alpha2 - alpha1 * alpha2,
-				Blend(back.GetRed(), front.GetRed(), alpha1, alpha2),
-				Blend(back.GetGreen(), front.GetGreen(), alpha1, alpha2),
-				Blend(back.GetBlue(), front.GetBlue(), alpha1, alpha2));
+				alpha3,
+				Blend(back.GetRed(), front.GetRed(), alpha1, alpha2) / alpha3,
+				Blend(back.GetGreen(), front.GetGreen(), alpha1, alpha2) / alpha3,
+				Blend(back.GetBlue(), front.GetBlue(), alpha1, alpha2) / alpha3);
 		}
 
 		protected abstract float Blend(float color1, float color2, float alpha1, float alpha2);
