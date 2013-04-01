@@ -1,0 +1,7 @@
+ImageOps
+===========================================
+
+Version 1.0.0
+-------------------------------------------
++ Added base project structure
++ Added implementation of BitmapStream for PixelFormat.Format32bppArgb bitmaps

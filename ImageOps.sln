@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageOps", "ImageOps\ImageOps.csproj", "{F04AFD7B-F200-48B8-87F2-F15D92349149}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageOps.UT", "ImageOps.UT\ImageOps.UT.csproj", "{4D05DEDA-BDD6-4846-A40C-583A3D49D55B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F04AFD7B-F200-48B8-87F2-F15D92349149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04AFD7B-F200-48B8-87F2-F15D92349149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04AFD7B-F200-48B8-87F2-F15D92349149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04AFD7B-F200-48B8-87F2-F15D92349149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D05DEDA-BDD6-4846-A40C-583A3D49D55B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D05DEDA-BDD6-4846-A40C-583A3D49D55B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D05DEDA-BDD6-4846-A40C-583A3D49D55B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D05DEDA-BDD6-4846-A40C-583A3D49D55B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
