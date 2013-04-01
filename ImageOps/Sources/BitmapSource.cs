@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using ImageOps.BitmapProcessing;
 
-namespace ImageOps
+namespace ImageOps.Sources
 {
-	public class BitmapSource : PixelStream
+	public class BitmapSource : SourceStream
 	{
 		private readonly Bitmap _bitmap;
 		private readonly BitmapData _bitmapData;

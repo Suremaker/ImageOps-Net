@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 
 namespace ImageOps
@@ -9,32 +9,13 @@ namespace ImageOps
 	{
 		#region IPixelStream Members
 
-		public void Seek(int position, SeekOrigin origin)
-		{
-			int delta = GetMoveByDelta(position, origin);
-			if (Position + delta < 0 || Position + delta > TotalLength)
-				throw new ArgumentOutOfRangeException();
-			MoveBy(delta);
-			Position += delta;
-		}
-
-		public int Position { get; private set; }
+		public abstract void Seek(int position, SeekOrigin origin);
+		public abstract int Position { get; }
 		public abstract int ImageWidth { get; }
 		public abstract int ImageHeight { get; }
+		public bool IsEnd { get { return Position >= TotalLength; } }
 
-		public bool IsEnd
-		{
-			get { return Position >= TotalLength; }
-		}
-
-		public PixelColor Read()
-		{
-			if (IsEnd)
-				throw new EndOfStreamException();
-			PixelColor color = ReadPixel();
-			Seek(1, SeekOrigin.Current);
-			return color;
-		}
+		public abstract PixelColor Read();
 
 		public int TotalLength
 		{
@@ -55,21 +36,5 @@ namespace ImageOps
 		}
 
 		#endregion
-
-		protected abstract void MoveBy(int i);
-		protected abstract PixelColor ReadPixel();
-
-		private int GetMoveByDelta(int position, SeekOrigin origin)
-		{
-			switch (origin)
-			{
-				case SeekOrigin.Begin:
-					return position - Position;
-				case SeekOrigin.End:
-					return TotalLength - 1 - Position + position;
-				default:
-					return position;
-			}
-		}
 	}
 }

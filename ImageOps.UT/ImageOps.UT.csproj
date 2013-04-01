@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="BitmapStreamTestBase.cs" />
     <Compile Include="BitmapStreamTests.cs" />
+    <Compile Include="BitmapWriterTests.cs" />
+    <Compile Include="BlendTests.cs" />
     <Compile Include="PixelColorTests.cs" />
     <Compile Include="PixelStreamTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,6 @@
-﻿namespace ImageOps
+﻿namespace ImageOps.Sources
 {
-	public class ColorSource : PixelStream
+	public class ColorSource : SourceStream
 	{
 		private readonly int _width;
 		private readonly int _height;

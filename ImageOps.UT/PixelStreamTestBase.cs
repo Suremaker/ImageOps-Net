@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ImageOps.Sources;
 using NUnit.Framework;
 
 namespace ImageOps.UT
