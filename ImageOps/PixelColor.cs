@@ -50,5 +50,10 @@ namespace ImageOps
 		{
 			return "0x" + _argb.ToString("X8", CultureInfo.InvariantCulture);
 		}
+
+		public static implicit operator PixelColor(Color color)
+		{
+			return new PixelColor(color);
+		}
 	}
 }

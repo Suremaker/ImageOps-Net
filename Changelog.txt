@@ -9,3 +9,6 @@ Version 1.0.0
 + Added NormalBlend and MultiplyBlend
 + Added BitmapWriter class with extension methods for IPixelStream
 + Added ImageOps.Example project
++ Modified MultiplyBlend algorithm to blend colors with alpha in similar way GIMP does
++ Refactored NormalBlend / BlendingStream classes
++ Added Color to PixelColor implicit conversion operator
