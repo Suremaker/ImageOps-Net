@@ -37,9 +37,11 @@
     <Compile Include="BitmapProcessing\Rgb24PixelPointer.cs" />
     <Compile Include="BitmapProcessing\Rgb32PixelPointer.cs" />
     <Compile Include="BitmapWriter.cs" />
+    <Compile Include="Blending\AddBlend.cs" />
     <Compile Include="Blending\BlendingStream.cs" />
     <Compile Include="Blending\MultiplyBlend.cs" />
     <Compile Include="Blending\NormalBlend.cs" />
+    <Compile Include="Operations\SourceCrop.cs" />
     <Compile Include="SourceStream.cs" />
     <Compile Include="Sources\BitmapSource.cs" />
     <Compile Include="BitmapProcessing\IPixelPointer.cs" />

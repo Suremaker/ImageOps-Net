@@ -31,7 +31,7 @@
 		{
 		}
 
-		protected override PixelColor ReadPixel()
+		protected override PixelColor GetCurrentPixel()
 		{
 			return _color;
 		}

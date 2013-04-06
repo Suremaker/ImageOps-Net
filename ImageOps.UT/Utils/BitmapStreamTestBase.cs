@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using ImageOps.Sources;
 
-namespace ImageOps.UT
+namespace ImageOps.UT.Utils
 {
 	public abstract class BitmapStreamTestBase : PixelStreamTestBase
 	{

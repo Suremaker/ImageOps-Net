@@ -2,7 +2,7 @@
 using ImageOps.Sources;
 using NUnit.Framework;
 
-namespace ImageOps.UT
+namespace ImageOps.UT.Writers
 {
 	[TestFixture]
 	public class BitmapWriterTests

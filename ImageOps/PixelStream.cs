@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 
 namespace ImageOps
 {
@@ -9,13 +7,13 @@ namespace ImageOps
 	{
 		#region IPixelStream Members
 
-		public abstract void Seek(int position, SeekOrigin origin);
+		public abstract void Move(int delta);
 		public abstract int Position { get; }
 		public abstract int ImageWidth { get; }
 		public abstract int ImageHeight { get; }
 		public bool IsEnd { get { return Position >= TotalLength; } }
 
-		public abstract PixelColor Read();
+		public abstract PixelColor GetCurrent();
 
 		public int TotalLength
 		{
@@ -27,7 +25,10 @@ namespace ImageOps
 		public IEnumerator<PixelColor> GetEnumerator()
 		{
 			while (!IsEnd)
-				yield return Read();
+			{
+				yield return GetCurrent();
+				Move(1);
+			}
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()

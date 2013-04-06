@@ -2,12 +2,13 @@
 using System.Linq;
 using ImageOps.Blending;
 using ImageOps.Sources;
+using ImageOps.UT.Utils;
 using NUnit.Framework;
 
-namespace ImageOps.UT
+namespace ImageOps.UT.Streams
 {
 	[TestFixture]
-	public class BlendTests
+	public class BlendStreamsTests
 	{
 		[Test]
 		public void ShouldBlendImagesUsingNormalBlending()
@@ -66,6 +67,33 @@ namespace ImageOps.UT
 				PixelColor.FromArgb(255,255,0,0),
 				PixelColor.FromArgb(127,255,85,85),
 				PixelColor.FromArgb(127,255,85,85)
+			}));
+		}
+
+		[Test]
+		public void ShouldBlendImagesUsingAddBlending()
+		{
+			var back = BitmapUtils.Create(new[,]
+			{
+				{ Color.Transparent,Color.White,Color.Black,Color.Black,Color.Black, Color.FromArgb(127,120,130,140), Color.FromArgb(127,120,130,140) }
+			});
+
+			var front = BitmapUtils.Create(new[,]
+			{
+				{ Color.White,Color.White,Color.Black,Color.FromArgb(127,127,127),Color.White, Color.FromArgb(10,20,30), Color.FromArgb(100,10,20,30) }
+			});
+
+			var result = new AddBlend(new BitmapSource(back), new BitmapSource(front)).ToArray();
+
+			Assert.That(result, Is.EqualTo(new[]
+			{
+				PixelColor.FromArgb(0,0,0,0),
+				Color.White,
+				Color.Black,
+				PixelColor.FromRgb(127,127,127),
+				Color.White,
+				PixelColor.FromArgb(127,126,143,159),
+				PixelColor.FromArgb(127,125,141,156)
 			}));
 		}
 	}

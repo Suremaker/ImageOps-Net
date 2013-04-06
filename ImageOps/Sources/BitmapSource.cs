@@ -49,7 +49,7 @@ namespace ImageOps.Sources
 			get { return _bitmapData.Height; }
 		}
 
-		protected override PixelColor ReadPixel()
+		protected override PixelColor GetCurrentPixel()
 		{
 			return _pixelPointer.Get();
 		}

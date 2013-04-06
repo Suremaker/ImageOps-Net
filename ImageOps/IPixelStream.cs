@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace ImageOps
 {
 	public interface IPixelStream : IDisposable, IEnumerable<PixelColor>
 	{
-		void Seek(int position, SeekOrigin origin);
+		void Move(int delta);
 		int Position { get; }
 		int TotalLength { get; }
 
@@ -15,6 +14,6 @@ namespace ImageOps
 
 		bool IsEnd { get; }
 
-		PixelColor Read();
+		PixelColor GetCurrent();
 	}
 }

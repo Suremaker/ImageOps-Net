@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace ImageOps.Blending
 {
@@ -37,15 +36,15 @@ namespace ImageOps.Blending
 			Front.Dispose();
 		}
 
-		public override PixelColor Read()
+		public override PixelColor GetCurrent()
 		{
-			return Blend(Back.Read(), Front.Read());
+			return Blend(Back.GetCurrent(), Front.GetCurrent());
 		}
 
-		public override void Seek(int position, SeekOrigin origin)
+		public override void Move(int delta)
 		{
-			Back.Seek(position, origin);
-			Front.Seek(position, origin);
+			Back.Move(delta);
+			Front.Move(delta);
 		}
 
 		protected abstract PixelColor Blend(PixelColor back, PixelColor front);

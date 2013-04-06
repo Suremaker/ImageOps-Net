@@ -12,3 +12,4 @@ Version 1.0.0
 + Modified MultiplyBlend algorithm to blend colors with alpha in similar way GIMP does
 + Refactored NormalBlend / BlendingStream classes
 + Added Color to PixelColor implicit conversion operator
++ Added AddBlend and SourceCrop

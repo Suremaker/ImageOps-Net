@@ -1,7 +1,8 @@
 ﻿using System.Drawing.Imaging;
+using ImageOps.UT.Utils;
 using NUnit.Framework;
 
-namespace ImageOps.UT
+namespace ImageOps.UT.Streams
 {
 	[TestFixture]
 	public class Format32BppArgbBitmapStreamTests : BitmapStreamTestBase
