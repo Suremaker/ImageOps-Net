@@ -13,3 +13,4 @@ Version 1.0.0
 + Refactored NormalBlend / BlendingStream classes
 + Added Color to PixelColor implicit conversion operator
 + Added AddBlend and SourceCrop
++ Added MaskAlphaBlend

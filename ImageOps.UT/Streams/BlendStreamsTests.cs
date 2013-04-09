@@ -96,5 +96,30 @@ namespace ImageOps.UT.Streams
 				PixelColor.FromArgb(127,125,141,156)
 			}));
 		}
+
+		[Test]
+		public void ShouldApplyAlphaMask()
+		{
+			var bitmap = BitmapUtils.Create(new[,]
+			{
+				{ Color.Transparent,Color.White,Color.White, Color.FromArgb(127,Color.White), Color.FromArgb(127,Color.White) }
+			});
+
+			var mask = BitmapUtils.Create(new[,]
+			{
+				{ Color.FromArgb(255,0,0,0),Color.FromArgb(255,0,0,0),Color.FromArgb(0,0,0,0),Color.FromArgb(255,0,0,0),Color.FromArgb(127,0,0,0) }
+			});
+
+			var result = new AlphaMaskBlend(new BitmapSource(bitmap), new BitmapSource(mask),ColorChannel.Alpha).ToArray();
+
+			Assert.That(result, Is.EqualTo(new[]
+			{
+				PixelColor.FromArgb(0,255,255,255),
+				PixelColor.FromArgb(255,255,255,255),
+				PixelColor.FromArgb(0,255,255,255),
+				PixelColor.FromArgb(127,255,255,255),
+				PixelColor.FromArgb(63,255,255,255)
+			}));
+		}
 	}
 }
