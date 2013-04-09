@@ -121,5 +121,18 @@ namespace ImageOps.UT.Streams
 				PixelColor.FromArgb(63,255,255,255)
 			}));
 		}
+
+		[Test]
+		[TestCase(ColorChannel.Alpha,50)]
+		[TestCase(ColorChannel.Red, 100)]
+		[TestCase(ColorChannel.Green, 150)]
+		[TestCase(ColorChannel.Blue, 200)]
+		public void ShoukdApplyAlphaMaskUsingProperChannel(ColorChannel channel, byte expectedAlpha)
+		{
+			var color = PixelColor.FromRgb(100, 100, 100);
+			var mask = PixelColor.FromArgb(50, 100, 150, 200);
+			var result = new AlphaMaskBlend(new ColorSource(1, 1, color), new ColorSource(1, 1, mask), channel);
+			Assert.That(result.Single().A,Is.EqualTo(expectedAlpha));
+		}
 	}
 }
