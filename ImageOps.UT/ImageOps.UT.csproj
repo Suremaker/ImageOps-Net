@@ -38,6 +38,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Streams\ExpandCanvasStreamTests.cs" />
     <Compile Include="Utils\BitmapStreamTestBase.cs" />
     <Compile Include="Streams\BitmapStreamTests.cs" />
     <Compile Include="Utils\BitmapUtils.cs" />

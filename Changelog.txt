@@ -14,3 +14,4 @@ Version 1.0.0
 + Added Color to PixelColor implicit conversion operator
 + Added AddBlend and SourceCrop
 + Added MaskAlphaBlend
++ Added ExpandCanvas
