@@ -1,4 +1,4 @@
-﻿namespace ImageOps.Operations
+﻿namespace ImageOps.Streaming.Converters
 {
 	public class ExpandCanvas : SourceStream
 	{

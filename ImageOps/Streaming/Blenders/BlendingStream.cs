@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ImageOps.Blending
+namespace ImageOps.Streaming.Blenders
 {
 	public abstract class BlendingStream : PixelStream
 	{

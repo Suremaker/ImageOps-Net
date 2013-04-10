@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using ImageOps.Sources;
+using ImageOps.Streaming.Sources;
 using NUnit.Framework;
 
 namespace ImageOps.UT.Writers

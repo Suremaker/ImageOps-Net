@@ -1,7 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 
-namespace ImageOps
+namespace ImageOps.Streaming
 {
 	public abstract class PixelStream : IPixelStream
 	{

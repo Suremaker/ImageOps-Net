@@ -15,3 +15,4 @@ Version 1.0.0
 + Added AddBlend and SourceCrop
 + Added MaskAlphaBlend
 + Added ExpandCanvas
++ Added fluent API (extension methods to IPixelStream)

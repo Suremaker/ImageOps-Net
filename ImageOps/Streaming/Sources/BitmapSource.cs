@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using ImageOps.BitmapProcessing;
+using ImageOps.Streaming.Sources.BitmapProcessing;
 
-namespace ImageOps.Sources
+namespace ImageOps.Streaming.Sources
 {
 	public class BitmapSource : SourceStream
 	{

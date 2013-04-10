@@ -1,10 +1,13 @@
 ﻿using System;
 
-namespace ImageOps.Blending
+namespace ImageOps.Streaming.Blenders
 {
-	public class AddBlend: BlendingStream
+	/// <summary>
+	/// Multiply blend algorithm bases on GIMP multiply mode
+	/// </summary>
+	public class MultiplyBlend : BlendingStream
 	{
-		public AddBlend(IPixelStream back, IPixelStream front)
+		public MultiplyBlend(IPixelStream back, IPixelStream front)
 			: base(back, front)
 		{
 		}
@@ -25,7 +28,7 @@ namespace ImageOps.Blending
 
 		private float Blend(float color1, float color2, float ratio)
 		{
-			return Clamp(color1 + color2) * ratio + Comp(color1, ratio);
+			return Clamp(color1 * color2) * ratio + Comp(color1, ratio);
 		}
 
 		private float CalcRatio(float backAlpha, float frontAlpha)

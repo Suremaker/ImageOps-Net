@@ -1,6 +1,4 @@
 ﻿using System.Drawing;
-using ImageOps.Blending;
-using ImageOps.Sources;
 
 namespace ImageOps.Example
 {
@@ -10,18 +8,17 @@ namespace ImageOps.Example
 		{
 			var clouds = new Bitmap("clouds.png");
 
-			using (var pixelStream = new NormalBlend(
-				new ColorSource(clouds.Width, clouds.Height, Color.SkyBlue),
-				new BitmapSource(clouds)))
+			using (var pixelStream = Color.SkyBlue
+				.AsPixelSource(clouds.Width, clouds.Height)
+				.Mix(clouds.AsPixelSource()))
 			{
 				pixelStream.ToBitmap().Save("cloudsOnBlueSky.png");
 			}
 
-			using (var pixelStream = new NormalBlend(
-				new ColorSource(clouds.Width, clouds.Height, Color.Black),
-				new MultiplyBlend(
-					new BitmapSource(clouds),
-					new ColorSource(clouds.Width, clouds.Height, Color.PaleVioletRed))))
+			using (var pixelStream = Color.Black
+				.AsPixelSource(clouds.Width, clouds.Height)
+				.Mix(clouds.AsPixelSource()
+					.Multiply(Color.PaleVioletRed.AsPixelSource(clouds.Width, clouds.Height))))
 			{
 				pixelStream.ToBitmap().Save("redCloudsOnDarkSky.png");
 			}

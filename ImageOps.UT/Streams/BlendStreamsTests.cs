@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Linq;
-using ImageOps.Blending;
-using ImageOps.Sources;
+using ImageOps.Streaming.Blenders;
+using ImageOps.Streaming.Sources;
 using ImageOps.UT.Utils;
 using NUnit.Framework;
 

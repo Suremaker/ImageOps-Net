@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ImageOps.Sources;
+using ImageOps.Streaming.Sources;
 using NUnit.Framework;
 
 namespace ImageOps.UT.Utils

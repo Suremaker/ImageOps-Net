@@ -1,4 +1,4 @@
-﻿namespace ImageOps.Blending
+﻿namespace ImageOps.Streaming.Blenders
 {
 	public class NormalBlend : BlendingStream
 	{

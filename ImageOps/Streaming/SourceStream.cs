@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 
-namespace ImageOps
+namespace ImageOps.Streaming
 {
 	public abstract class SourceStream : PixelStream
 	{

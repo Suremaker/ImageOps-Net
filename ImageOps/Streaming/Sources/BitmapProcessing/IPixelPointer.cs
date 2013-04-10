@@ -1,4 +1,4 @@
-﻿namespace ImageOps.BitmapProcessing
+﻿namespace ImageOps.Streaming.Sources.BitmapProcessing
 {
 	internal interface IPixelPointer
 	{

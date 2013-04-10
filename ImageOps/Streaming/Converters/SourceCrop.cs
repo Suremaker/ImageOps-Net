@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 
-namespace ImageOps.Operations
+namespace ImageOps.Streaming.Converters
 {
 	public class SourceCrop : SourceStream
 	{

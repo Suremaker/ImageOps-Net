@@ -1,4 +1,4 @@
-﻿namespace ImageOps.Sources
+﻿namespace ImageOps.Streaming.Sources
 {
 	public class ColorSource : SourceStream
 	{

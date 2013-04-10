@@ -33,26 +33,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BitmapProcessing\Argb32PixelPointer.cs" />
-    <Compile Include="BitmapProcessing\Rgb24PixelPointer.cs" />
-    <Compile Include="BitmapProcessing\Rgb32PixelPointer.cs" />
+    <Compile Include="PixelStreamConverters.cs" />
+    <Compile Include="PixelStreamSources.cs" />
+    <Compile Include="PixelStreamCompositor.cs" />
+    <Compile Include="Streaming\Sources\BitmapProcessing\Argb32PixelPointer.cs" />
+    <Compile Include="Streaming\Sources\BitmapProcessing\Rgb24PixelPointer.cs" />
+    <Compile Include="Streaming\Sources\BitmapProcessing\Rgb32PixelPointer.cs" />
     <Compile Include="BitmapWriter.cs" />
-    <Compile Include="Blending\AddBlend.cs" />
-    <Compile Include="Blending\AlphaMaskBlend.cs" />
-    <Compile Include="Blending\BlendingStream.cs" />
-    <Compile Include="Blending\MultiplyBlend.cs" />
-    <Compile Include="Blending\NormalBlend.cs" />
+    <Compile Include="Streaming\Blenders\AddBlend.cs" />
+    <Compile Include="Streaming\Blenders\AlphaMaskBlend.cs" />
+    <Compile Include="Streaming\Blenders\BlendingStream.cs" />
+    <Compile Include="Streaming\Blenders\MultiplyBlend.cs" />
+    <Compile Include="Streaming\Blenders\NormalBlend.cs" />
     <Compile Include="ColorChannel.cs" />
-    <Compile Include="Operations\ExpandCanvas.cs" />
-    <Compile Include="Operations\SourceCrop.cs" />
-    <Compile Include="SourceStream.cs" />
-    <Compile Include="Sources\BitmapSource.cs" />
-    <Compile Include="BitmapProcessing\IPixelPointer.cs" />
-    <Compile Include="Sources\ColorSource.cs" />
+    <Compile Include="Streaming\Converters\ExpandCanvas.cs" />
+    <Compile Include="Streaming\Converters\SourceCrop.cs" />
+    <Compile Include="Streaming\Sources\BitmapSource.cs" />
+    <Compile Include="Streaming\Sources\BitmapProcessing\IPixelPointer.cs" />
+    <Compile Include="Streaming\Sources\ColorSource.cs" />
     <Compile Include="IPixelStream.cs" />
     <Compile Include="PixelColor.cs" />
-    <Compile Include="PixelStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Streaming\PixelStream.cs" />
+    <Compile Include="Streaming\SourceStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

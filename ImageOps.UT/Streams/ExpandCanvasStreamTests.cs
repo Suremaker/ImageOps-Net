@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using ImageOps.Operations;
-using ImageOps.Sources;
+using ImageOps.Streaming.Converters;
+using ImageOps.Streaming.Sources;
 using ImageOps.UT.Utils;
 using NUnit.Framework;
 

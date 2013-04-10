@@ -1,6 +1,6 @@
 ﻿using System.Drawing.Imaging;
 
-namespace ImageOps.BitmapProcessing
+namespace ImageOps.Streaming.Sources.BitmapProcessing
 {
 	internal class Rgb24PixelPointer : IPixelPointer
 	{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using ImageOps.Sources;
+using ImageOps.Streaming.Sources;
 
 namespace ImageOps.UT.Utils
 {
