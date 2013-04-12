@@ -53,7 +53,7 @@
 				return;
 
 			var sourcePos = sourceY * _source.ImageWidth + sourceX;
-			_source.Move(_source.Position - sourcePos);
+			_source.Move(sourcePos - _source.Position);
 		}
 
 		protected override PixelColor GetCurrentPixel()

@@ -33,18 +33,22 @@ namespace ImageOps.UT.Streams
 		}
 
 		[Test]
-		public void ShouldExpandCanvasProperly([Values(0, 1, 2)]int left, [Values(0, 1, 2)]int top, [Values(0, 1, 2)]int right, [Values(0, 1, 2)]int bottom)
+		public void ShouldExpandCanvasProperly([Values(0, 1, 10)]int left, [Values(0, 1, 10)]int top, [Values(0, 1, 10)]int right, [Values(0, 1, 10)]int bottom)
 		{
-			var bmp = new ExpandCanvas(new ColorSource(1, 1, Color.White), left, top, right, bottom).ToBitmap();
-			Assert.That(bmp.Width, Is.EqualTo(left + right + 1));
-			Assert.That(bmp.Height, Is.EqualTo(top + bottom + 1));
+			var bmp = new ExpandCanvas(new ColorSource(2, 2, Color.White), left, top, right, bottom).ToBitmap();
+			Assert.That(bmp.Width, Is.EqualTo(left + right + 2));
+			Assert.That(bmp.Height, Is.EqualTo(top + bottom + 2));
 
 			for (int x = 0; x < bmp.Width; ++x)
 				for (int y = 0; y < bmp.Height; ++y)
 				{
 					var color = bmp.GetPixel(x, y);
-					var expected = (x - left == 0 && y - top == 0)
-						? Color.FromArgb(255, 255, 255, 255) : Color.FromArgb(0, 0, 0, 0);
+
+					var sx = x - left;
+					var sy = y - top;
+					var expected = ((sx == 0 || sx == 1) && (sy == 0 || sy == 1))
+						? Color.FromArgb(255, 255, 255, 255)
+						: Color.FromArgb(0, 0, 0, 0);
 
 					Assert.That(color, Is.EqualTo(expected), string.Format("Wrong color at {0}x{1}", x, y));
 				}
