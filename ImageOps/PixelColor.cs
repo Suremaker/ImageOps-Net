@@ -5,7 +5,7 @@ namespace ImageOps
 {
 	public struct PixelColor
 	{
-		public static PixelColor Transparent = new PixelColor(0);
+		public static PixelColor Transparent = new PixelColor(Color.Transparent);
 		private readonly uint _argb;
 
 		public byte A { get { return (byte)(_argb >> 24); } }
