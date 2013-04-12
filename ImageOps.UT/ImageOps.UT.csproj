@@ -41,7 +41,6 @@
     <Compile Include="Streams\ExpandCanvasStreamTests.cs" />
     <Compile Include="Utils\BitmapStreamTestBase.cs" />
     <Compile Include="Streams\BitmapStreamTests.cs" />
-    <Compile Include="Utils\BitmapUtils.cs" />
     <Compile Include="Writers\BitmapWriterTests.cs" />
     <Compile Include="Streams\BlendStreamsTests.cs" />
     <Compile Include="PixelColorTests.cs" />

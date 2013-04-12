@@ -16,3 +16,4 @@ Version 1.0.0
 + Added MaskAlphaBlend
 + Added ExpandCanvas
 + Added fluent API (extension methods to IPixelStream)
++ Exposed BitmapUtils and added method to fill bitmap by using color function

@@ -31,8 +31,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BitmapUtils.cs" />
     <Compile Include="PixelStreamConverters.cs" />
     <Compile Include="PixelStreamSources.cs" />
     <Compile Include="PixelStreamCompositor.cs" />
