@@ -20,6 +20,16 @@ namespace ImageOps
 			return layers.Aggregate(source, (current, stream) => new NormalBlend(current, stream));
 		}
 
+		public static IPixelStream Burn(this IPixelStream source, params IPixelStream[] layers)
+		{
+			return layers.Aggregate(source, (current, stream) => new BurnBlend(current, stream));
+		}
+
+		public static IPixelStream GrainMerge(this IPixelStream source, params IPixelStream[] layers)
+		{
+			return layers.Aggregate(source, (current, stream) => new GrainMergeBlend(current, stream));
+		}
+
 		public static IPixelStream AddAlphaMask(this IPixelStream source, IPixelStream mask, ColorChannel maskChannel = ColorChannel.Alpha)
 		{
 			return new AlphaMaskBlend(source, mask, maskChannel);

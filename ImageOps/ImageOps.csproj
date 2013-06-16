@@ -38,6 +38,9 @@
     <Compile Include="PixelStreamConverters.cs" />
     <Compile Include="PixelStreamSources.cs" />
     <Compile Include="PixelStreamCompositor.cs" />
+    <Compile Include="Streaming\Blenders\BurnBlend.cs" />
+    <Compile Include="Streaming\Blenders\GrainMergeBlend.cs" />
+    <Compile Include="Streaming\Blenders\StandardBlend.cs" />
     <Compile Include="Streaming\Sources\BitmapProcessing\Argb32PixelPointer.cs" />
     <Compile Include="Streaming\Sources\BitmapProcessing\Rgb24PixelPointer.cs" />
     <Compile Include="Streaming\Sources\BitmapProcessing\Rgb32PixelPointer.cs" />

@@ -48,7 +48,7 @@ namespace ImageOps.UT.Streams
 					var sy = y - top;
 					var expected = ((sx == 0 || sx == 1) && (sy == 0 || sy == 1))
 						? Color.FromArgb(255, 255, 255, 255)
-						: Color.FromArgb(0, 0, 0, 0);
+						: Color.FromArgb(0, 255, 255, 255);
 
 					Assert.That(color, Is.EqualTo(expected), string.Format("Wrong color at {0}x{1}", x, y));
 				}

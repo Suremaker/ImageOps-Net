@@ -1,15 +1,15 @@
 ﻿namespace ImageOps.Streaming.Blenders
 {
-	public class AddBlend : StandardBlend
+	public class BurnBlend : StandardBlend
 	{
-		public AddBlend(IPixelStream back, IPixelStream front)
+		public BurnBlend(IPixelStream back, IPixelStream front)
 			: base(back, front)
 		{
 		}
 
 		protected override float Blend(float color1, float color2)
 		{
-			return color1 + color2;
+			return Clamp(1.0f - ((1.0f - color1) / color2));
 		}
 	}
 }

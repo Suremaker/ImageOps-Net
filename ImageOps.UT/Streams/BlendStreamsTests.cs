@@ -2,7 +2,6 @@
 using System.Linq;
 using ImageOps.Streaming.Blenders;
 using ImageOps.Streaming.Sources;
-using ImageOps.UT.Utils;
 using NUnit.Framework;
 
 namespace ImageOps.UT.Streams
@@ -44,6 +43,30 @@ namespace ImageOps.UT.Streams
 				PixelColor.FromRgb(255,255,255),
 				PixelColor.FromRgb(10,80,70)
 			}));
+		}
+
+		[Test]
+		public void ShouldBlendImagesUsingGrainMergeBlending()
+		{
+			var back = BitmapUtils.Create(3, 1, Color.White);
+			var front = BitmapUtils.Create(new[,]
+			{
+				{ Color.Black, Color.White, Color.FromArgb(10, 80, 70) }
+			});
+
+			var result = new GrainMergeBlend(new BitmapSource(back), new BitmapSource(front)).ToArray();
+			Assert.That(result, Is.EqualTo(new[]
+			{
+				PixelColor.FromRgb(127,127,127),
+				PixelColor.FromRgb(255,255,255),
+				PixelColor.FromRgb(137,207,197)
+			}));
+		}
+
+		[Test]
+		[Ignore("Write proper tests")]
+		public void ShouldBlendImagesUsingBurnBlending()
+		{			
 		}
 
 		[Test]
