@@ -64,9 +64,25 @@ namespace ImageOps.UT.Streams
 		}
 
 		[Test]
-		[Ignore("Write proper tests")]
 		public void ShouldBlendImagesUsingBurnBlending()
-		{			
+		{
+			var back = BitmapUtils.Create(new[,]
+			{
+				{Color.Red, Color.Green, Color.Blue, Color.Gray}
+			});
+			var front = BitmapUtils.Create(new[,]
+			{
+				{Color.Green, Color.Yellow, Color.Gray, Color.Magenta}
+			});
+
+			var result = new BurnBlend(new BitmapSource(back), new BitmapSource(front)).ToArray();
+			Assert.That(result, Is.EqualTo(new[]
+			{
+				Color.Black,
+				PixelColor.FromRgb(0,128,0),
+				PixelColor.FromRgb(0,0,255),
+				PixelColor.FromRgb(128,0,128)
+			}));
 		}
 
 		[Test]
@@ -133,7 +149,7 @@ namespace ImageOps.UT.Streams
 				{ Color.FromArgb(255,0,0,0),Color.FromArgb(255,0,0,0),Color.FromArgb(0,0,0,0),Color.FromArgb(255,0,0,0),Color.FromArgb(127,0,0,0) }
 			});
 
-			var result = new AlphaMaskBlend(new BitmapSource(bitmap), new BitmapSource(mask),ColorChannel.Alpha).ToArray();
+			var result = new AlphaMaskBlend(new BitmapSource(bitmap), new BitmapSource(mask), ColorChannel.Alpha).ToArray();
 
 			Assert.That(result, Is.EqualTo(new[]
 			{
@@ -146,7 +162,7 @@ namespace ImageOps.UT.Streams
 		}
 
 		[Test]
-		[TestCase(ColorChannel.Alpha,50)]
+		[TestCase(ColorChannel.Alpha, 50)]
 		[TestCase(ColorChannel.Red, 100)]
 		[TestCase(ColorChannel.Green, 150)]
 		[TestCase(ColorChannel.Blue, 200)]
@@ -155,7 +171,7 @@ namespace ImageOps.UT.Streams
 			var color = PixelColor.FromRgb(100, 100, 100);
 			var mask = PixelColor.FromArgb(50, 100, 150, 200);
 			var result = new AlphaMaskBlend(new ColorSource(1, 1, color), new ColorSource(1, 1, mask), channel);
-			Assert.That(result.Single().A,Is.EqualTo(expectedAlpha));
+			Assert.That(result.Single().A, Is.EqualTo(expectedAlpha));
 		}
 	}
 }
