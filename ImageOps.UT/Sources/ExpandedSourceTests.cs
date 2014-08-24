@@ -28,7 +28,7 @@ namespace ImageOps.UT.Sources
                     PixelColor.Transparent
                 };
 
-            Subject = new ExpandedSource(new ColorSource(1, 1, Color.White), 1);
+            Subject = new ColorSource(1, 1, Color.White).Expand(1);
         }
 
         [Test]

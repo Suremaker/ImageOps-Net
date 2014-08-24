@@ -3,18 +3,18 @@ namespace ImageOps.Sources.Streams
     internal class ExpandingStream : SourceStream<ExpandedSource>
     {
         private bool _isOutsideImage;
-        private readonly IPixelStream _source;
+        private readonly IPixelStream _stream;
 
         public ExpandingStream(ExpandedSource expandCanvas)
             : base(expandCanvas)
         {
             _isOutsideImage = Source.LeftMargin > 0 || Source.TopMargin > 0;
-            _source = Source.OriginalSource.OpenStream();
+            _stream = Source.OriginalSource.OpenStream();
         }
 
         public override void Dispose()
         {
-            _source.Dispose();
+            _stream.Dispose();
         }
 
         public override void MoveBy(int delta)
@@ -29,12 +29,12 @@ namespace ImageOps.Sources.Streams
                 return;
 
             var sourcePos = sourceY * Source.OriginalSource.ImageWidth + sourceX;
-            _source.Move(sourcePos - _source.Position);
+            _stream.Move(sourcePos - _stream.Position);
         }
 
         public override PixelColor GetCurrent()
         {
-            return _isOutsideImage ? PixelColor.Transparent : _source.GetCurrent();
+            return _isOutsideImage ? Source.ExpandedColor : _stream.GetCurrent();
         }
     }
 }
