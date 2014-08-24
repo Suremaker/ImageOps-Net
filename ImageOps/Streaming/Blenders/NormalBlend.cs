@@ -7,7 +7,7 @@
 		{
 		}
 
-		protected override PixelColor Blend(PixelColor back, PixelColor front)
+	    public override PixelColor Blend(PixelColor back, PixelColor front)
 		{
 			var backAlpha = back.GetAlpha();
 			var frontAlpha = front.GetAlpha();

@@ -27,7 +27,7 @@ namespace ImageOps.Streaming.Blenders
 			}
 		}
 
-		protected override PixelColor Blend(PixelColor source, PixelColor mask)
+	    public override PixelColor Blend(PixelColor source, PixelColor mask)
 		{
 			float alpha = CalculateAlpha(source.GetAlpha(), _alphaSelector(mask));
 			return PixelColor.FromFargb(alpha, source.GetRed(), source.GetGreen(), source.GetBlue());

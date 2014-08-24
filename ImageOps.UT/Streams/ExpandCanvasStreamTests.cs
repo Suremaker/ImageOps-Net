@@ -35,7 +35,7 @@ namespace ImageOps.UT.Streams
 		[Test]
 		public void ShouldExpandCanvasProperly([Values(0, 1, 10)]int left, [Values(0, 1, 10)]int top, [Values(0, 1, 10)]int right, [Values(0, 1, 10)]int bottom)
 		{
-			var bmp = new ExpandCanvas(new ColorSource(2, 2, Color.White), left, top, right, bottom).ToBitmap();
+			var bmp = new ExpandCanvas2(new ColorSource(2, 2, Color.White), left, top, right, bottom).ToBitmap();
 			Assert.That(bmp.Width, Is.EqualTo(left + right + 2));
 			Assert.That(bmp.Height, Is.EqualTo(top + bottom + 2));
 

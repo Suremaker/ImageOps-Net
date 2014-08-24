@@ -5,24 +5,24 @@ namespace ImageOps
 {
 	public static class PixelStreamConverters
 	{
-		public static IPixelStream ExpandCanvas(this IPixelStream source, int leftMargin, int topMargin, int rightMargin, int bottomMargin)
+        public static IPixelSource ExpandCanvas(this IPixelSource source, int leftMargin, int topMargin, int rightMargin, int bottomMargin)
 		{
-			return new ExpandCanvas(source, leftMargin, topMargin, rightMargin, bottomMargin);
+			return new ExpandCanvas2(source, leftMargin, topMargin, rightMargin, bottomMargin);
 		}
 
-		public static IPixelStream ExpandCanvas(this IPixelStream source, int horizontalMargin, int verticalMargin)
+        public static IPixelSource ExpandCanvas(this IPixelSource source, int horizontalMargin, int verticalMargin)
 		{
-			return new ExpandCanvas(source, horizontalMargin, verticalMargin);
+			return new ExpandCanvas2(source, horizontalMargin, verticalMargin);
 		}
 
-		public static IPixelStream ExpandCanvas(this IPixelStream source, int margin)
+        public static IPixelSource ExpandCanvas(this IPixelSource source, int margin)
 		{
-			return new ExpandCanvas(source, margin);
+			return new ExpandCanvas2(source, margin);
 		}
 
-		public static IPixelStream Crop(this IPixelStream source, Rectangle rectangle)
+        public static IPixelSource Crop(this IPixelSource source, Rectangle rectangle)
 		{
-			return new SourceCrop(source, rectangle);
+			return new SourceCrop2(source, rectangle);
 		}
 	}
 }

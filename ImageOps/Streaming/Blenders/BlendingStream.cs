@@ -2,7 +2,7 @@
 
 namespace ImageOps.Streaming.Blenders
 {
-	public abstract class BlendingStream : PixelStream
+	public abstract class BlendingStream : PixelStream,IBlendingMethod
 	{
 		protected readonly IPixelStream Back;
 		protected readonly IPixelStream Front;
@@ -47,7 +47,7 @@ namespace ImageOps.Streaming.Blenders
 			Front.Move(delta);
 		}
 
-		protected abstract PixelColor Blend(PixelColor back, PixelColor front);
+	    public abstract PixelColor Blend(PixelColor back, PixelColor front);
 
 		protected static float Comp(float color, float alpha)
 		{

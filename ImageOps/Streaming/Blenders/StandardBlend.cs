@@ -12,7 +12,7 @@ namespace ImageOps.Streaming.Blenders
 		{
 		}
 
-		protected override PixelColor Blend(PixelColor back, PixelColor front)
+	    public override PixelColor Blend(PixelColor back, PixelColor front)
 		{
 			float ratio = CalcRatio(back.GetAlpha(), front.GetAlpha());
 
@@ -40,4 +40,9 @@ namespace ImageOps.Streaming.Blenders
 			return newAlpha != 0.0f ? minAlpha / newAlpha : 0;
 		}
 	}
+
+    public interface IBlendingMethod
+    {
+        PixelColor Blend(PixelColor back, PixelColor front);
+    }
 }

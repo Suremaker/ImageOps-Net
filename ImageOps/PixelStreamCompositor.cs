@@ -1,38 +1,40 @@
 ﻿using System.Linq;
 using ImageOps.Streaming.Blenders;
+using ImageOps.Streaming.Sources;
 
 namespace ImageOps
 {
-	public static class PixelStreamCompositor
-	{
-		public static IPixelStream Multiply(this IPixelStream source, params IPixelStream[] layers)
-		{
-			return layers.Aggregate(source, (current, stream) => new MultiplyBlend(current, stream));
-		}
+    public static class PixelStreamCompositor
+    {
+        private static IPixelStream nullSource = new ColorSource(1, 1, PixelColor.FromRgb(0, 0, 0));
+        public static IPixelSource Multiply(this IPixelSource source, params IPixelSource[] layers)
+        {
+            return layers.Aggregate(source, (current, stream) => new BlendedSource(new MultiplyBlend(nullSource, nullSource), current, stream));
+        }
 
-		public static IPixelStream Add(this IPixelStream source, params IPixelStream[] layers)
-		{
-			return layers.Aggregate(source, (current, stream) => new AddBlend(current, stream));
-		}
+        public static IPixelSource Add(this IPixelSource source, params IPixelSource[] layers)
+        {
+            return layers.Aggregate(source, (current, stream) => new BlendedSource(new AddBlend(nullSource, nullSource), current, stream));
+        }
 
-		public static IPixelStream Mix(this IPixelStream source, params IPixelStream[] layers)
-		{
-			return layers.Aggregate(source, (current, stream) => new NormalBlend(current, stream));
-		}
+        public static IPixelSource Mix(this IPixelSource source, params IPixelSource[] layers)
+        {
+            return layers.Aggregate(source, (current, stream) => new BlendedSource(new NormalBlend(nullSource, nullSource), current, stream));
+        }
 
-		public static IPixelStream Burn(this IPixelStream source, params IPixelStream[] layers)
-		{
-			return layers.Aggregate(source, (current, stream) => new BurnBlend(current, stream));
-		}
+        public static IPixelSource Burn(this IPixelSource source, params IPixelSource[] layers)
+        {
+            return layers.Aggregate(source, (current, stream) => new BlendedSource(new BurnBlend(nullSource, nullSource), current, stream));
+        }
 
-		public static IPixelStream GrainMerge(this IPixelStream source, params IPixelStream[] layers)
-		{
-			return layers.Aggregate(source, (current, stream) => new GrainMergeBlend(current, stream));
-		}
+        public static IPixelSource GrainMerge(this IPixelSource source, params IPixelSource[] layers)
+        {
+            return layers.Aggregate(source, (current, stream) => new BlendedSource(new GrainMergeBlend(nullSource, nullSource), current, stream));
+        }
 
-		public static IPixelStream AddAlphaMask(this IPixelStream source, IPixelStream mask, ColorChannel maskChannel = ColorChannel.Alpha)
-		{
-			return new AlphaMaskBlend(source, mask, maskChannel);
-		}
-	}
+        public static IPixelSource AddAlphaMask(this IPixelSource source, IPixelSource mask, ColorChannel maskChannel = ColorChannel.Alpha)
+        {
+            return new BlendedSource(new AlphaMaskBlend(nullSource, nullSource, maskChannel), source, mask);
+        }
+    }
 }
