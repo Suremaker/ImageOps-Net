@@ -34,32 +34,41 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BitmapUtils.cs" />
-    <Compile Include="PixelStreamConverters.cs" />
-    <Compile Include="PixelStreamSources.cs" />
-    <Compile Include="PixelStreamCompositor.cs" />
-    <Compile Include="Streaming\Blenders\BurnBlend.cs" />
-    <Compile Include="Streaming\Blenders\GrainMergeBlend.cs" />
-    <Compile Include="Streaming\Blenders\IBlendingMethod.cs" />
-    <Compile Include="Streaming\Blenders\StandardBlend.cs" />
-    <Compile Include="Streaming\Sources\BitmapProcessing\Argb32PixelPointer.cs" />
-    <Compile Include="Streaming\Sources\BitmapProcessing\Rgb24PixelPointer.cs" />
-    <Compile Include="Streaming\Sources\BitmapProcessing\Rgb32PixelPointer.cs" />
+    <Compile Include="BitmapCreator.cs" />
+    <Compile Include="Blenders\BlendingMethods.cs" />
+    <Compile Include="Sources\IPixelSource.cs" />
+    <Compile Include="PixelSourceConverters.cs" />
+    <Compile Include="PixelSourceCreator.cs" />
+    <Compile Include="PixelSourceCompositor.cs" />
+    <Compile Include="Blenders\BurnBlend.cs" />
+    <Compile Include="Blenders\GrainMergeBlend.cs" />
+    <Compile Include="Blenders\IBlendingMethod.cs" />
+    <Compile Include="Blenders\StandardBlend.cs" />
+    <Compile Include="Sources\BitmapLocker.cs" />
     <Compile Include="BitmapWriter.cs" />
-    <Compile Include="Streaming\Blenders\AddBlend.cs" />
-    <Compile Include="Streaming\Blenders\AlphaMaskBlend.cs" />
-    <Compile Include="Streaming\Blenders\BlendingStream.cs" />
-    <Compile Include="Streaming\Blenders\MultiplyBlend.cs" />
-    <Compile Include="Streaming\Blenders\NormalBlend.cs" />
+    <Compile Include="Blenders\AddBlend.cs" />
+    <Compile Include="Blenders\AlphaMaskBlend.cs" />
+    <Compile Include="Blenders\BlendingMethod.cs" />
+    <Compile Include="Blenders\MultiplyBlend.cs" />
+    <Compile Include="Blenders\NormalBlend.cs" />
     <Compile Include="ColorChannel.cs" />
-    <Compile Include="Streaming\Converters\ExpandCanvas.cs" />
-    <Compile Include="Streaming\Converters\SourceCrop.cs" />
-    <Compile Include="Streaming\Sources\BitmapSource.cs" />
-    <Compile Include="Streaming\Sources\ColorSource.cs" />
-    <Compile Include="IPixelStream.cs" />
+    <Compile Include="Sources\BlendedSource.cs" />
+    <Compile Include="Sources\ExpandedSource.cs" />
+    <Compile Include="Sources\CroppedSource.cs" />
+    <Compile Include="Sources\BitmapSource.cs" />
+    <Compile Include="Sources\ColorSource.cs" />
+    <Compile Include="Sources\Streams\BitmapStream.cs" />
+    <Compile Include="Sources\Streams\IPixelStream.cs" />
     <Compile Include="PixelColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Streaming\SourceStream.cs" />
+    <Compile Include="Sources\Streams\SourceStream.cs" />
+    <Compile Include="Sources\Streams\BitmapStreamArgb32.cs" />
+    <Compile Include="Sources\Streams\BlendingStream.cs" />
+    <Compile Include="Sources\Streams\ColorStream.cs" />
+    <Compile Include="Sources\Streams\CroppingStream.cs" />
+    <Compile Include="Sources\Streams\ExpandingStream.cs" />
+    <Compile Include="Sources\Streams\BitmapStreamRgb24.cs" />
+    <Compile Include="Sources\Streams\BitmapStreamRgb32.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

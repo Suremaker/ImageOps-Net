@@ -38,15 +38,18 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Streams\ExpandCanvasStreamTests.cs" />
-    <Compile Include="Utils\BitmapStreamTestBase.cs" />
-    <Compile Include="Streams\BitmapStreamTests.cs" />
+    <Compile Include="Sources\ExpandedSourceTests.cs" />
+    <Compile Include="Sources\Format24BppRgbBitmapSourceTests.cs" />
+    <Compile Include="Sources\Format32BppArgbBitmapSourceTests.cs" />
+    <Compile Include="Sources\Format32BppRgbBitmapSourceTests.cs" />
+    <Compile Include="Helpers\BitmapSourceTestBase.cs" />
+    <Compile Include="Sources\ColorSourceTests.cs" />
     <Compile Include="Writers\BitmapWriterTests.cs" />
-    <Compile Include="Streams\BlendStreamsTests.cs" />
+    <Compile Include="Sources\BlendedSourceTests.cs" />
     <Compile Include="PixelColorTests.cs" />
-    <Compile Include="Utils\PixelStreamTestBase.cs" />
+    <Compile Include="Helpers\PixelSourceTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Streams\SourceCropStreamTests.cs" />
+    <Compile Include="Sources\CroppedSourceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

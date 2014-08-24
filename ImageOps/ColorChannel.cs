@@ -1,7 +1,10 @@
 ﻿namespace ImageOps
 {
-	public enum ColorChannel
-	{
-		Red, Green, Blue, Alpha
-	}
+    public enum ColorChannel
+    {
+        Red,
+        Green,
+        Blue,
+        Alpha
+    }
 }
