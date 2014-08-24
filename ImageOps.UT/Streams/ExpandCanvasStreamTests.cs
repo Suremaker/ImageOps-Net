@@ -29,7 +29,7 @@ namespace ImageOps.UT.Streams
 				PixelColor.Transparent
 			};
 
-			Subject = new ExpandCanvas(new ColorSource(1, 1, Color.White), 1);
+			Subject = new ExpandCanvas2(new ColorSource(1, 1, Color.White), 1);
 		}
 
 		[Test]

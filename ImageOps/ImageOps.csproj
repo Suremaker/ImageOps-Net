@@ -40,6 +40,7 @@
     <Compile Include="PixelStreamCompositor.cs" />
     <Compile Include="Streaming\Blenders\BurnBlend.cs" />
     <Compile Include="Streaming\Blenders\GrainMergeBlend.cs" />
+    <Compile Include="Streaming\Blenders\IBlendingMethod.cs" />
     <Compile Include="Streaming\Blenders\StandardBlend.cs" />
     <Compile Include="Streaming\Sources\BitmapProcessing\Argb32PixelPointer.cs" />
     <Compile Include="Streaming\Sources\BitmapProcessing\Rgb24PixelPointer.cs" />
@@ -54,12 +55,10 @@
     <Compile Include="Streaming\Converters\ExpandCanvas.cs" />
     <Compile Include="Streaming\Converters\SourceCrop.cs" />
     <Compile Include="Streaming\Sources\BitmapSource.cs" />
-    <Compile Include="Streaming\Sources\BitmapProcessing\IPixelPointer.cs" />
     <Compile Include="Streaming\Sources\ColorSource.cs" />
     <Compile Include="IPixelStream.cs" />
     <Compile Include="PixelColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Streaming\PixelStream.cs" />
     <Compile Include="Streaming\SourceStream.cs" />
   </ItemGroup>
   <ItemGroup>

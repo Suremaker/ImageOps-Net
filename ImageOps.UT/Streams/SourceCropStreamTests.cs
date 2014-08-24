@@ -29,7 +29,7 @@ namespace ImageOps.UT.Streams
 						ExpectedColors.Add(colors[y, x]);
 				}
 
-			Subject = new SourceCrop(new BitmapSource(BitmapUtils.Create(colors)), new Rectangle(1, 1, 2, 3));
+			Subject = new SourceCrop2(new BitmapSource(BitmapUtils.Create(colors)), new Rectangle(1, 1, 2, 3));
 		}
 
 		[Test]
@@ -42,7 +42,7 @@ namespace ImageOps.UT.Streams
 		[TestCase(10, 10, 5, 5, 6, 6)]
 		public void ShouldThrowIfCroppedRectangleExpandsOverSource(int width, int height, int cropX, int cropY, int cropWidth, int cropHeight)
 		{
-			var ex = Assert.Throws<ArgumentException>(() => new SourceCrop(new ColorSource(width, height, Color.Red), new Rectangle(cropX, cropY, cropWidth, cropHeight)));
+			var ex = Assert.Throws<ArgumentException>(() => new SourceCrop2(new ColorSource(width, height, Color.Red), new Rectangle(cropX, cropY, cropWidth, cropHeight)));
 			Assert.That(ex.Message, Is.EqualTo("Cropped dimensions cannot expand over source dimensions"));
 		}
 
@@ -53,7 +53,7 @@ namespace ImageOps.UT.Streams
 		[TestCase(-1, 1)]
 		public void ShouldThrowIfCroppedRectangleSizeIsInvalid( int cropWidth, int cropHeight)
 		{
-			var ex = Assert.Throws<ArgumentException>(() => new SourceCrop(new ColorSource(100, 100, Color.Red), new Rectangle(0, 0, cropWidth, cropHeight)));
+			var ex = Assert.Throws<ArgumentException>(() => new SourceCrop2(new ColorSource(100, 100, Color.Red), new Rectangle(0, 0, cropWidth, cropHeight)));
 			Assert.That(ex.Message, Is.EqualTo("Cropped image width and height has to be > 0"));
 		}
 	}

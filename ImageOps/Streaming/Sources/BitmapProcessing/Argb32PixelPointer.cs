@@ -2,7 +2,7 @@
 
 namespace ImageOps.Streaming.Sources.BitmapProcessing
 {
-    public class Argb32PixelPointer : SourceStream2<IPixelSource>, IPixelPointer
+    public class Argb32PixelPointer : SourceStream2<IPixelSource>
     {
         private readonly BitmapLocker _locker;
         private unsafe uint* _pointer;
@@ -12,11 +12,6 @@ namespace ImageOps.Streaming.Sources.BitmapProcessing
         {
             _locker = locker;
             _pointer = (uint*)locker.Lock().Scan0.ToPointer();
-        }
-
-        public unsafe PixelColor Get()
-        {
-            return new PixelColor(*_pointer);
         }
 
         public override unsafe void MoveBy(int i)
@@ -29,9 +24,9 @@ namespace ImageOps.Streaming.Sources.BitmapProcessing
             _locker.Unlock();
             _pointer = null;
         }
-        public override PixelColor GetCurrent()
+        public override unsafe PixelColor GetCurrent()
         {
-            return Get();
+            return new PixelColor(*_pointer);
         }
     }
 }

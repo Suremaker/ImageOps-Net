@@ -20,8 +20,8 @@ namespace ImageOps.Streaming.Sources
         [MethodImpl(MethodImplOptions.Synchronized)]
         public BitmapData Lock()
         {
-            return (_lockCounter++) == 0 
-                ? (_bitmapData = LockBitmap()) 
+            return (_lockCounter++) == 0
+                ? (_bitmapData = LockBitmap())
                 : _bitmapData;
         }
 
@@ -50,26 +50,34 @@ namespace ImageOps.Streaming.Sources
             _bitmapData = null;
         }
     }
-    public class BitmapSource : SourceStream, IPixelSource
+    public class BitmapSource : IPixelSource
     {
         private readonly Bitmap _bitmap;
         private readonly BitmapLocker _bitmapLocker;
         private bool _disposed;
-        private readonly IPixelPointer _pixelPointer;
 
         public BitmapSource(Bitmap bitmap)
         {
             _bitmap = bitmap;
-            _bitmapLocker=new BitmapLocker(bitmap);
-            _pixelPointer = CreatePixelPointer();
+            _bitmapLocker = new BitmapLocker(bitmap);
         }
 
-        private IPixelPointer CreatePixelPointer()
+        public int ImageWidth
+        {
+            get { return _bitmap.Width; }
+        }
+
+        public int ImageHeight
+        {
+            get { return _bitmap.Height; }
+        }
+
+        public IPixelStream2 OpenStream()
         {
             switch (_bitmap.PixelFormat)
             {
                 case PixelFormat.Format32bppArgb:
-                    return new Argb32PixelPointer(this,_bitmapLocker);
+                    return new Argb32PixelPointer(this, _bitmapLocker);
                 case PixelFormat.Format32bppRgb:
                     return new Rgb32PixelPointer(this, _bitmapLocker);
                 case PixelFormat.Format24bppRgb:
@@ -79,32 +87,7 @@ namespace ImageOps.Streaming.Sources
             }
         }
 
-        protected override void MoveBy(int i)
-        {
-            _pixelPointer.MoveBy(i);
-        }
-
-        public override int ImageWidth
-        {
-            get { return _bitmap.Width; }
-        }
-
-        public override int ImageHeight
-        {
-            get { return _bitmap.Height; }
-        }
-
-        public IPixelStream2 OpenStream()
-        {
-            return CreatePixelPointer();
-        }
-
-        protected override PixelColor GetCurrentPixel()
-        {
-            return _pixelPointer.Get();
-        }
-
-        public override void Dispose()
+        public void Dispose()
         {
             if (!_disposed)
                 _bitmapLocker.Dispose();

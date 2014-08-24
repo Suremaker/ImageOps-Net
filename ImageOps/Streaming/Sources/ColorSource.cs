@@ -3,7 +3,7 @@ using ImageOps.Streaming.Blenders;
 
 namespace ImageOps.Streaming.Sources
 {
-    public class ColorSource : SourceStream, IPixelSource
+    public class ColorSource : IPixelSource
     {
         private readonly int _width;
         private readonly int _height;
@@ -15,12 +15,12 @@ namespace ImageOps.Streaming.Sources
             Color = color;
         }
 
-        public override int ImageWidth
+        public int ImageWidth
         {
             get { return _width; }
         }
 
-        public override int ImageHeight
+        public int ImageHeight
         {
             get { return _height; }
         }
@@ -32,17 +32,8 @@ namespace ImageOps.Streaming.Sources
             return new ColorStream(this);
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
-        }
-
-        protected override void MoveBy(int i)
-        {
-        }
-
-        protected override PixelColor GetCurrentPixel()
-        {
-            return Color;
         }
     }
 

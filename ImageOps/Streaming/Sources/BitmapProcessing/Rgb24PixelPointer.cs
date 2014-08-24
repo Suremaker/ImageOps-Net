@@ -2,7 +2,7 @@
 
 namespace ImageOps.Streaming.Sources.BitmapProcessing
 {
-    internal class Rgb24PixelPointer : SourceStream2<IPixelSource>, IPixelPointer
+    internal class Rgb24PixelPointer : SourceStream2<IPixelSource>
     {
         private readonly BitmapLocker _locker;
         private unsafe byte* _pointer;
@@ -15,12 +15,6 @@ namespace ImageOps.Streaming.Sources.BitmapProcessing
             _locker = locker;
             _data = locker.Lock();
             _pointer = (byte*)_data.Scan0.ToPointer();
-        }
-
-        public unsafe PixelColor Get()
-        {
-            var index = GetPointerIndex();
-            return PixelColor.FromRgb(_pointer[index + 2], _pointer[index + 1], _pointer[index + 0]);
         }
 
         private int GetPointerIndex()
@@ -41,9 +35,10 @@ namespace ImageOps.Streaming.Sources.BitmapProcessing
             _pixelIndex += i;
         }
 
-        public override PixelColor GetCurrent()
+        public override unsafe PixelColor GetCurrent()
         {
-            return Get();
+            var index = GetPointerIndex();
+            return PixelColor.FromRgb(_pointer[index + 2], _pointer[index + 1], _pointer[index + 0]);
         }
     }
 }
