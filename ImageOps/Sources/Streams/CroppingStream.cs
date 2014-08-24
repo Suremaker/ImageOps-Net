@@ -19,7 +19,7 @@ namespace ImageOps.Sources.Streams
         public override void MoveBy(int delta)
         {
             var cropPos = delta + Position;
-            var expectedPos = Source.BaseOffset + cropPos + (cropPos/Source.CroppedRegion.Width)*Source.SkippedPixels;
+            var expectedPos = Source.BaseOffset + cropPos + (cropPos / Source.CroppedRegion.Width) * Source.SkippedPixels;
             _source.Move(expectedPos - _source.Position);
         }
 

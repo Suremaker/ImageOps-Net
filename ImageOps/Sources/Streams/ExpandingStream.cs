@@ -20,15 +20,15 @@ namespace ImageOps.Sources.Streams
         public override void MoveBy(int delta)
         {
             var canvasPos = Position + delta;
-            var sourceY = canvasPos/Source.ImageWidth - Source.TopMargin;
-            var sourceX = canvasPos%Source.ImageWidth - Source.LeftMargin;
+            var sourceY = canvasPos / Source.ImageWidth - Source.TopMargin;
+            var sourceX = canvasPos % Source.ImageWidth - Source.LeftMargin;
 
             _isOutsideImage = sourceX < 0 || sourceY < 0 || sourceX >= Source.OriginalSource.ImageWidth ||
                               sourceY >= Source.OriginalSource.ImageHeight;
             if (_isOutsideImage)
                 return;
 
-            var sourcePos = sourceY*Source.OriginalSource.ImageWidth + sourceX;
+            var sourcePos = sourceY * Source.OriginalSource.ImageWidth + sourceX;
             _source.Move(sourcePos - _source.Position);
         }
 

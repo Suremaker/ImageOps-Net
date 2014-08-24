@@ -14,18 +14,13 @@ namespace ImageOps.Sources
         public BitmapSource(Bitmap bitmap)
         {
             Bitmap = bitmap;
+            ImageWidth = bitmap.Width;
+            ImageHeight = bitmap.Height;
             _bitmapLocker = new BitmapLocker(bitmap);
         }
 
-        public int ImageWidth
-        {
-            get { return Bitmap.Width; }
-        }
-
-        public int ImageHeight
-        {
-            get { return Bitmap.Height; }
-        }
+        public int ImageWidth { get; private set; }
+        public int ImageHeight { get; private set; }
 
         public IPixelStream OpenStream()
         {

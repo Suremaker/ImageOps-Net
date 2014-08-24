@@ -13,24 +13,17 @@ namespace ImageOps.Sources
         public BlendedSource(IBlendingMethod blendingMethod, IPixelSource background, IPixelSource foreground)
         {
             if (background.ImageHeight != foreground.ImageHeight || background.ImageWidth != foreground.ImageWidth)
-                throw new ArgumentException(
-                    string.Format(
-                        "Background layer size does not match size of foreground layer: Background={0}, Foreground={1}",
-                        background, foreground));
+                throw new ArgumentException(string.Format("Background layer size does not match size of foreground layer: Background={0}, Foreground={1}", background, foreground));
             BlendingMethod = blendingMethod;
             BackgroundSource = background;
             ForegroundSource = foreground;
+            ImageWidth = background.ImageWidth;
+            ImageHeight = background.ImageHeight;
         }
 
-        public int ImageWidth
-        {
-            get { return BackgroundSource.ImageWidth; }
-        }
+        public int ImageWidth { get; private set; }
 
-        public int ImageHeight
-        {
-            get { return BackgroundSource.ImageHeight; }
-        }
+        public int ImageHeight { get; private set; }
 
         public IPixelStream OpenStream()
         {

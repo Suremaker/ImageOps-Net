@@ -11,6 +11,7 @@ namespace ImageOps.Sources.Streams
         protected SourceStream(TSource source)
         {
             Source = source;
+            Length = Source.ImageWidth * Source.ImageHeight;
         }
 
         public abstract void Dispose();
@@ -27,10 +28,7 @@ namespace ImageOps.Sources.Streams
 
         public int Position { get; private set; }
 
-        public int Length
-        {
-            get { return Source.ImageWidth*Source.ImageHeight; }
-        }
+        public int Length { get; private set; }
 
         public bool IsEnd
         {
