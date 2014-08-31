@@ -5,6 +5,7 @@ Version 1.1.0
 -------------------------------------------
 + Restructured classes hierarchy to separate pixel source from pixel stream
 + added RegionBlendedSource
++ added RepeatedSource
 
 Version 1.0.0
 -------------------------------------------

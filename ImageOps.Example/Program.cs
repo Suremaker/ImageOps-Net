@@ -15,7 +15,7 @@ namespace ImageOps.Example
             var width = clouds.ImageWidth;
             var height = clouds.ImageHeight;
 
-            Stopwatch sw=new Stopwatch();
+            Stopwatch sw = new Stopwatch();
             sw.Start();
             Color.SkyBlue.AsPixelSource(width, height)
                  .Mix(clouds)
@@ -42,10 +42,10 @@ namespace ImageOps.Example
             sw.Stop();
             Console.WriteLine(sw.Elapsed);
             sw.Start();
-            clouds.BlendRegion(Regions.Rectangle(0,0,width/2,height/2),Color.Red.AsPixelSource(width / 2, height / 2),BlendingMethods.Multiply )
-                .BlendRegion(Regions.Rectangle(width / 2, 0,width/2,height/2), Color.Green.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+            clouds.BlendRegion(Regions.Rectangle(0, 0, width / 2, height / 2), Color.Red.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+                .BlendRegion(Regions.Rectangle(width / 2, 0, width / 2, height / 2), Color.Green.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
                 .BlendRegion(Regions.Rectangle(0, height / 2, width / 2, height / 2), Color.Blue.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
-                .BlendRegion(Regions.Rectangle(width/2,height/2,width/2,height/2),Color.Yellow.AsPixelSource(width / 2, height / 2),BlendingMethods.Multiply )
+                .BlendRegion(Regions.Rectangle(width / 2, height / 2, width / 2, height / 2), Color.Yellow.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
                 .BlendRegion(Regions.Rectangle(width / 4, height / 4, width / 2, height / 2), Color.Magenta.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
                 .ToBitmap()
                 .Save("skyWithRectangles2.png");
@@ -59,6 +59,17 @@ namespace ImageOps.Example
                 .BlendRegion(new PolygonRegion(new Point(width / 4, height / 4), new Point(3 * width / 4 - 1, height / 4), new Point(3 * width / 4 - 1, 3 * height / 4 - 1)), Color.Magenta.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
                 .ToBitmap()
                 .Save("skyWithRectangles3.png");
+            sw.Stop();
+            Console.WriteLine(sw.Elapsed);
+            sw.Start();
+            clouds.BlendRegion(Regions.Rectangle(0, 0, width / 2, height / 2), Color.Red.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+                .BlendRegion(Regions.Rectangle(width / 2, 0, width / 2, height / 2), Color.Green.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+                .BlendRegion(Regions.Rectangle(0, height / 2, width / 2, height / 2), Color.Blue.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+                .BlendRegion(Regions.Rectangle(width / 2, height / 2, width / 2, height / 2), Color.Yellow.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+                .BlendRegion(Regions.Rectangle(width / 4, height / 4, width / 2, height / 2), Color.Magenta.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+                .RepeatSource(width * 2, height * 3)
+                .ToBitmap()
+                .Save("skyWithRectangles4.png");
             sw.Stop();
             Console.WriteLine(sw.Elapsed);
             Console.ReadLine();

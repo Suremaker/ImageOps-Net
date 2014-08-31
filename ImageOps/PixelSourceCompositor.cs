@@ -47,5 +47,10 @@ namespace ImageOps
         {
             return source.Blend(new AlphaMaskBlend(maskChannel), mask);
         }
+
+        public static IPixelSource RepeatSource(this IPixelSource source, int newWidth, int newHeight)
+        {
+            return new RepeatedSource(source, newWidth, newHeight);
+        }
     }
 }
