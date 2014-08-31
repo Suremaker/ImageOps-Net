@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using ImageOps.Blenders;
 using ImageOps.Sources;
+using ImageOps.Sources.Regions;
 
 namespace ImageOps
 {
@@ -9,6 +10,12 @@ namespace ImageOps
         public static IPixelSource Blend(this IPixelSource source, IBlendingMethod method, params IPixelSource[] layers)
         {
             return layers.Aggregate(source, (current, stream) => new BlendedSource(method, current, stream));
+        }
+
+        public static IPixelSource BlendRegion(this IPixelSource source, IRegion region, IPixelSource layer, IBlendingMethod blendingMethod)
+        {
+            var blendingSource = source as RegionBlendedSource ?? new RegionBlendedSource(source);
+            return blendingSource.AddRegion(region, layer, blendingMethod);
         }
 
         public static IPixelSource Multiply(this IPixelSource source, params IPixelSource[] layers)

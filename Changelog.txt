@@ -4,6 +4,7 @@ ImageOps
 Version 1.1.0
 -------------------------------------------
 + Restructured classes hierarchy to separate pixel source from pixel stream
++ added RegionBlendedSource
 
 Version 1.0.0
 -------------------------------------------
