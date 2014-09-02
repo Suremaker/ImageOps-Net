@@ -1,17 +1,28 @@
 ﻿using System.Drawing;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 namespace ImageOps
 {
+    [StructLayout(LayoutKind.Explicit)]
     public struct PixelColor
     {
-        private const float TO_FLOAT_MULTIPLIER = 1.0f/255;
+        private const float TO_FLOAT_MULTIPLIER = 1.0f / 255;
         public static PixelColor Transparent = new PixelColor(Color.Transparent);
+        [FieldOffset(0)]
         private readonly uint _argb;
+        [FieldOffset(3)]
+        private readonly byte _a;
+        [FieldOffset(2)]
+        private readonly byte _r;
+        [FieldOffset(1)]
+        private readonly byte _g;
+        [FieldOffset(0)]
+        private readonly byte _b;
 
         public byte A
         {
-            get { return (byte)(_argb >> 24); }
+            get { return _a; }
         }
 
         public uint Argb
@@ -21,7 +32,7 @@ namespace ImageOps
 
         public byte B
         {
-            get { return (byte)_argb; }
+            get { return _b; }
         }
 
         public Color Color
@@ -31,12 +42,12 @@ namespace ImageOps
 
         public byte G
         {
-            get { return (byte)(_argb >> 8); }
+            get { return _g; }
         }
 
         public byte R
         {
-            get { return (byte)(_argb >> 16); }
+            get { return _r; }
         }
 
         public PixelColor(Color color)
@@ -45,8 +56,18 @@ namespace ImageOps
         }
 
         public PixelColor(uint argb)
+            : this()
         {
             _argb = argb;
+        }
+
+        public PixelColor(byte alpha, byte red, byte green, byte blue)
+            : this()
+        {
+            _a = alpha;
+            _b = blue;
+            _r = red;
+            _g = green;
         }
 
         public static PixelColor FromRgb(byte red, byte green, byte blue)
@@ -56,7 +77,7 @@ namespace ImageOps
 
         public static PixelColor FromArgb(byte alpha, byte red, byte green, byte blue)
         {
-            return new PixelColor(((uint)alpha << 24) | ((uint)red << 16) | ((uint)green << 8) | blue);
+            return new PixelColor(alpha, red, green, blue);
         }
 
         public static PixelColor FromGrayscale(byte value)
