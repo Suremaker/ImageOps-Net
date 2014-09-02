@@ -5,6 +5,7 @@ namespace ImageOps
 {
     public struct PixelColor
     {
+        private const float TO_FLOAT_MULTIPLIER = 1.0f/255;
         public static PixelColor Transparent = new PixelColor(Color.Transparent);
         private readonly uint _argb;
 
@@ -80,22 +81,22 @@ namespace ImageOps
 
         public float GetAlpha()
         {
-            return A / 255.0f;
+            return A * TO_FLOAT_MULTIPLIER;
         }
 
         public float GetBlue()
         {
-            return B / 255.0f;
+            return B * TO_FLOAT_MULTIPLIER;
         }
 
         public float GetGreen()
         {
-            return G / 255.0f;
+            return G * TO_FLOAT_MULTIPLIER;
         }
 
         public float GetRed()
         {
-            return R / 255.0f;
+            return R * TO_FLOAT_MULTIPLIER;
         }
 
         public override string ToString()
