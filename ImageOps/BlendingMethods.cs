@@ -1,4 +1,6 @@
-namespace ImageOps.Blenders
+using ImageOps.Blenders;
+
+namespace ImageOps
 {
     public static class BlendingMethods
     {

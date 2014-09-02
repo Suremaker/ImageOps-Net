@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BitmapCreator.cs" />
-    <Compile Include="Blenders\BlendingMethods.cs" />
+    <Compile Include="BlendingMethods.cs" />
     <Compile Include="PixelRectangle.cs" />
     <Compile Include="Sources\BlendedRegion.cs" />
     <Compile Include="Sources\ComputedSource.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="Sources\RegionBlendedSource.cs" />
     <Compile Include="Sources\Regions\IRegion.cs" />
     <Compile Include="Sources\Regions\PolygonRegion.cs" />
-    <Compile Include="Sources\Regions\Regions.cs" />
+    <Compile Include="Regions.cs" />
     <Compile Include="Sources\RepeatedSource.cs" />
     <Compile Include="Sources\Streams\BitmapStream.cs" />
     <Compile Include="Sources\Streams\ComputingStream.cs" />

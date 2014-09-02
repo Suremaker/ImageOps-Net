@@ -58,6 +58,21 @@ namespace ImageOps
             return new PixelColor(((uint)alpha << 24) | ((uint)red << 16) | ((uint)green << 8) | blue);
         }
 
+        public static PixelColor FromGrayscale(byte value)
+        {
+            return FromRgb(value, value, value);
+        }
+
+        public static PixelColor FromGrayscale(byte alpha, byte value)
+        {
+            return FromArgb(alpha, value, value, value);
+        }
+
+        public static PixelColor FromFGrayscale(float alpha, float value)
+        {
+            return FromFargb(alpha, value, value, value);
+        }
+
         public static PixelColor FromFargb(float alpha, float red, float green, float blue)
         {
             return FromArgb((byte)(alpha * 255), (byte)(red * 255), (byte)(green * 255), (byte)(blue * 255));

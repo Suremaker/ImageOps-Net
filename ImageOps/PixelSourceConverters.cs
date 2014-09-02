@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using ImageOps.Sources;
+﻿using ImageOps.Sources;
 
 namespace ImageOps
 {

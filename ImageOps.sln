@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageOps.Example", "ImageOps.Example\ImageOps.Example.csproj", "{57ABB7C5-6170-4046-A5CF-E7602AEFF4FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageOps.PerformanceTests", "ImageOps.PerformanceTests\ImageOps.PerformanceTests.csproj", "{0B928125-2FCF-4C6B-94CD-621E4698216F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,16 @@ Global
 		{57ABB7C5-6170-4046-A5CF-E7602AEFF4FB}.Release|Mixed Platforms.Build.0 = Release|x86
 		{57ABB7C5-6170-4046-A5CF-E7602AEFF4FB}.Release|x86.ActiveCfg = Release|x86
 		{57ABB7C5-6170-4046-A5CF-E7602AEFF4FB}.Release|x86.Build.0 = Release|x86
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0B928125-2FCF-4C6B-94CD-621E4698216F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

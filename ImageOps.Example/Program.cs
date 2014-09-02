@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using ImageOps.Blenders;
 using ImageOps.Sources.Regions;
 
 namespace ImageOps.Example
