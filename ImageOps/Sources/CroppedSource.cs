@@ -7,11 +7,11 @@ namespace ImageOps.Sources
     public class CroppedSource : IPixelSource
     {
         public IPixelSource OriginalSource { get; private set; }
-        public Rectangle CroppedRegion { get; private set; }
+        public PixelRectangle CroppedRegion { get; private set; }
         public int BaseOffset { get; private set; }
         public int SkippedPixels { get; private set; }
 
-        public CroppedSource(IPixelSource source, Rectangle rectangle)
+        public CroppedSource(IPixelSource source, PixelRectangle rectangle)
         {
             if (rectangle.Width <= 0 || rectangle.Height <= 0)
                 throw new ArgumentException("Cropped image width and height has to be > 0");

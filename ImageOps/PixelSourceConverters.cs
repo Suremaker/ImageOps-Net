@@ -35,7 +35,7 @@ namespace ImageOps
             return new ExpandedSource(source, margin, margin, margin, margin, expandedColor);
         }
 
-        public static IPixelSource Crop(this IPixelSource source, Rectangle rectangle)
+        public static IPixelSource Crop(this IPixelSource source, PixelRectangle rectangle)
         {
             return new CroppedSource(source, rectangle);
         }

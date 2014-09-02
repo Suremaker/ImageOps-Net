@@ -38,6 +38,7 @@
     <Compile Include="Blenders\BlendingMethods.cs" />
     <Compile Include="PixelRectangle.cs" />
     <Compile Include="Sources\BlendedRegion.cs" />
+    <Compile Include="Sources\ComputedSource.cs" />
     <Compile Include="Sources\IPixelSource.cs" />
     <Compile Include="PixelSourceConverters.cs" />
     <Compile Include="PixelSourceCreator.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Sources\Regions\Regions.cs" />
     <Compile Include="Sources\RepeatedSource.cs" />
     <Compile Include="Sources\Streams\BitmapStream.cs" />
+    <Compile Include="Sources\Streams\ComputingStream.cs" />
     <Compile Include="Sources\Streams\IPixelStream.cs" />
     <Compile Include="PixelColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

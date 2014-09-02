@@ -27,7 +27,7 @@ namespace ImageOps.UT.Sources
                         ExpectedColors.Add(colors[y, x]);
                 }
 
-            Subject = new CroppedSource(new BitmapSource(BitmapCreator.Create(colors)), new Rectangle(1, 1, 2, 3));
+            Subject = new CroppedSource(new BitmapSource(BitmapCreator.Create(colors)), new PixelRectangle(1, 1, 2, 3));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace ImageOps.UT.Sources
                 Assert.Throws<ArgumentException>(
                     () =>
                     new CroppedSource(new ColorSource(width, height, Color.Red),
-                                      new Rectangle(cropX, cropY, cropWidth, cropHeight)));
+                                      new PixelRectangle(cropX, cropY, cropWidth, cropHeight)));
             Assert.That(ex.Message, Is.EqualTo("Cropped dimensions cannot expand over source dimensions"));
         }
 
@@ -59,7 +59,7 @@ namespace ImageOps.UT.Sources
             var ex =
                 Assert.Throws<ArgumentException>(
                     () =>
-                    new CroppedSource(new ColorSource(100, 100, Color.Red), new Rectangle(0, 0, cropWidth, cropHeight)));
+                    new CroppedSource(new ColorSource(100, 100, Color.Red), new PixelRectangle(0, 0, cropWidth, cropHeight)));
             Assert.That(ex.Message, Is.EqualTo("Cropped image width and height has to be > 0"));
         }
     }
