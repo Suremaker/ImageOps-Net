@@ -7,7 +7,7 @@ namespace ImageOps
     [StructLayout(LayoutKind.Explicit)]
     public struct PixelColor
     {
-        private const float TO_FLOAT_MULTIPLIER = 1.0f / 255;
+        private const double TO_DOUBLE_MULTIPLIER = 1.0 / 255;
         public static PixelColor Transparent = new PixelColor(Color.Transparent);
         [FieldOffset(0)]
         private readonly uint _argb;
@@ -90,34 +90,34 @@ namespace ImageOps
             return FromArgb(alpha, value, value, value);
         }
 
-        public static PixelColor FromFGrayscale(float alpha, float value)
+        public static PixelColor FromFGrayscale(double alpha, double value)
         {
             return FromFargb(alpha, value, value, value);
         }
 
-        public static PixelColor FromFargb(float alpha, float red, float green, float blue)
+        public static PixelColor FromFargb(double alpha, double red, double green, double blue)
         {
             return FromArgb((byte)(alpha * 255), (byte)(red * 255), (byte)(green * 255), (byte)(blue * 255));
         }
 
-        public float GetAlpha()
+        public double GetAlpha()
         {
-            return A * TO_FLOAT_MULTIPLIER;
+            return A * TO_DOUBLE_MULTIPLIER;
         }
 
-        public float GetBlue()
+        public double GetBlue()
         {
-            return B * TO_FLOAT_MULTIPLIER;
+            return B * TO_DOUBLE_MULTIPLIER;
         }
 
-        public float GetGreen()
+        public double GetGreen()
         {
-            return G * TO_FLOAT_MULTIPLIER;
+            return G * TO_DOUBLE_MULTIPLIER;
         }
 
-        public float GetRed()
+        public double GetRed()
         {
-            return R * TO_FLOAT_MULTIPLIER;
+            return R * TO_DOUBLE_MULTIPLIER;
         }
 
         public override string ToString()

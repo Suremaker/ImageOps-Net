@@ -6,12 +6,12 @@ namespace ImageOps.Blenders
     {
         public abstract PixelColor Blend(PixelColor back, PixelColor front);
 
-        protected static float Comp(float color, float alpha)
+        protected static double Comp(double color, double alpha)
         {
             return color*(1 - alpha);
         }
 
-        protected static float Clamp(float value)
+        protected static double Clamp(double value)
         {
             return Math.Min(1, Math.Max(0, value));
         }

@@ -25,12 +25,12 @@ namespace ImageOps.UT
         }
 
         [Test]
-        public void ShouldSetFloatValues()
+        public void ShouldSetdoubleValues()
         {
-            const float alpha = 0.2f;
-            const float red = 0.4f;
-            const float green = 0.6f;
-            const float blue = 0.8f;
+            const double alpha = 0.2;
+            const double red = 0.4;
+            const double green = 0.6;
+            const double blue = 0.8;
             var pixelColor = PixelColor.FromFargb(alpha, red, green, blue);
             Assert.That(pixelColor.GetAlpha(), Is.EqualTo(alpha));
             Assert.That(pixelColor.GetRed(), Is.EqualTo(red));
@@ -39,11 +39,11 @@ namespace ImageOps.UT
         }
 
         [Test]
-        public void ShouldConvertRgbaToFloat()
+        public void ShouldConvertRgbaTodouble()
         {
-            const float red = 0.2f;
-            const float green = 0.3f;
-            var pixelColor = PixelColor.FromFargb(0f, red, green, 1f);
+            const double red = 0.2;
+            const double green = 0.3;
+            var pixelColor = PixelColor.FromFargb(0, red, green, 1);
             Assert.That(pixelColor.A, Is.EqualTo(0));
             Assert.That(pixelColor.R, Is.EqualTo((byte) (red*255)));
             Assert.That(pixelColor.G, Is.EqualTo((byte) (green*255)));

@@ -23,7 +23,7 @@ namespace ImageOps.UT.Sources
                 {
                     PixelColor.FromRgb(0, 0, 0),
                     PixelColor.FromRgb(255, 255, 255),
-                    PixelColor.FromRgb(127, 127, 127)
+                    PixelColor.FromRgb(128, 128, 128)
                 }));
         }
 

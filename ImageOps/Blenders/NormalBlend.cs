@@ -15,7 +15,7 @@
                 Blend(back.GetBlue(), front.GetBlue(), backAlpha, frontAlpha, outAlpha));
         }
 
-        protected float Blend(float color1, float color2, float alpha1, float alpha2, float alpha3)
+        protected double Blend(double color1, double color2, double alpha1, double alpha2, double alpha3)
         {
             return (color2*alpha2 + Comp(color1*alpha1, alpha2))/alpha3;
         }

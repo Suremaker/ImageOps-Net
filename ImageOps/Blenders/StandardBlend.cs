@@ -9,9 +9,9 @@ namespace ImageOps.Blenders
     {
         public override PixelColor Blend(PixelColor back, PixelColor front)
         {
-            float ratio = CalcRatio(back.GetAlpha(), front.GetAlpha());
+            double ratio = CalcRatio(back.GetAlpha(), front.GetAlpha());
 
-            if (ratio == 0.0f)
+            if (ratio == 0.0)
                 return PixelColor.FromArgb(0, 0, 0, 0);
 
             return PixelColor.FromFargb(
@@ -21,18 +21,18 @@ namespace ImageOps.Blenders
                 Blend(back.GetBlue(), front.GetBlue(), ratio));
         }
 
-        private float Blend(float color1, float color2, float ratio)
+        private double Blend(double color1, double color2, double ratio)
         {
             return Clamp(Blend(color1, color2))*ratio + Comp(color1, ratio);
         }
 
-        protected abstract float Blend(float color1, float color2);
+        protected abstract double Blend(double color1, double color2);
 
-        private float CalcRatio(float backAlpha, float frontAlpha)
+        private double CalcRatio(double backAlpha, double frontAlpha)
         {
             var minAlpha = Math.Min(backAlpha, frontAlpha);
             var newAlpha = backAlpha + Comp(minAlpha, backAlpha);
-            return newAlpha != 0.0f ? minAlpha/newAlpha : 0;
+            return newAlpha != 0.0 ? minAlpha/newAlpha : 0;
         }
     }
 }
