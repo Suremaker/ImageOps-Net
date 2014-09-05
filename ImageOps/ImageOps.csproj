@@ -47,7 +47,6 @@
     <Compile Include="Blenders\BurnBlend.cs" />
     <Compile Include="Blenders\GrainMergeBlend.cs" />
     <Compile Include="Blenders\IBlendingMethod.cs" />
-    <Compile Include="Blenders\StandardBlend.cs" />
     <Compile Include="Sources\BitmapLocker.cs" />
     <Compile Include="BitmapWriter.cs" />
     <Compile Include="Blenders\AddBlend.cs" />

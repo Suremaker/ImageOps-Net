@@ -15,10 +15,10 @@
 
         private static byte Blend(int backColor, int frontColor, int ratio)
         {
-            return Discrete.BlendWithRatio(backColor, Blend(backColor, frontColor), ratio);
+            return Discrete.BlendWithRatio(backColor, Add(backColor, frontColor), ratio);
         }
 
-        private static int Blend(int backColor, int frontColor)
+        private static int Add(int backColor, int frontColor)
         {
             return Discrete.Clamp(backColor + frontColor);
         }

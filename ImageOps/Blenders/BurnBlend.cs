@@ -1,10 +1,28 @@
 ﻿namespace ImageOps.Blenders
 {
-    public class BurnBlend : StandardBlend
+    public class BurnBlend : IBlendingMethod
     {
-        protected override double Blend(double color1, double color2)
+        public PixelColor Blend(PixelColor back, PixelColor front)
         {
-            return Clamp(1.0 - ((1.0 - color1)/color2));
+            if (front.A * back.A == 0) return new PixelColor();
+            int ratio = Discrete.CalcAlphaRatio(back.A, front.A);
+            return new PixelColor(
+                back.A,
+                Blend(back.R, front.R, ratio),
+                Blend(back.G, front.G, ratio),
+                Blend(back.B, front.B, ratio));
+        }
+
+        private static byte Blend(int backColor, int frontColor, int ratio)
+        {
+            return Discrete.BlendWithRatio(backColor, Burn(backColor, frontColor), ratio);
+        }
+
+        private static int Burn(int backColor, int frontColor)
+        {
+            if (frontColor == 0)
+                return 0;
+            return Discrete.MaxColor - Discrete.Clamp(((Discrete.MaxColor - backColor) * Discrete.MaxColor) / frontColor);
         }
     }
 }
