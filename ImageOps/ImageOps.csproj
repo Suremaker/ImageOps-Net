@@ -51,7 +51,6 @@
     <Compile Include="BitmapWriter.cs" />
     <Compile Include="Blenders\AddBlend.cs" />
     <Compile Include="Blenders\AlphaMaskBlend.cs" />
-    <Compile Include="Blenders\BlendingMethod.cs" />
     <Compile Include="Blenders\MultiplyBlend.cs" />
     <Compile Include="Blenders\NormalBlend.cs" />
     <Compile Include="ColorChannel.cs" />

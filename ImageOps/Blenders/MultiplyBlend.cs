@@ -7,7 +7,8 @@
     {
         public PixelColor Blend(PixelColor back, PixelColor front)
         {
-            if (front.A * back.A == 0) return new PixelColor();
+            if (Discrete.HasNothingToBlend(back.A, front.A))
+                return new PixelColor(back.Argb);
             int ratio = Discrete.CalcAlphaRatio(back.A, front.A);
             return new PixelColor(
                 back.A,

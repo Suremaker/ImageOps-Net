@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using ImageOps.PerformanceTests.Helpers;
+using ImageOps.PerformanceTests.Scenarios;
 
 namespace ImageOps.PerformanceTests
 {
@@ -19,7 +20,7 @@ namespace ImageOps.PerformanceTests
                 .Select(Activator.CreateInstance)
                 .Cast<TestCase>()
                 .ToArray();
-
+            //var testCases = new[] {new NormalBlendedSource(), };
             Console.WriteLine("Executing {0} cases...", testCases.Length);
             var results = testCases.Select((t, index) => RunCase(index, testCases)).ToList();
             WriteResults(results);

@@ -102,7 +102,7 @@ namespace ImageOps.UT.Sources
 
             Assert.That(result, Is.EqualTo(new[]
                 {
-                    PixelColor.FromArgb(0, 0, 0, 0),
+                    PixelColor.FromArgb(0, 255, 255, 255),
                     PixelColor.FromArgb(255, 255, 0, 0),
                     PixelColor.FromArgb(127, 255, 85, 85),
                     PixelColor.FromArgb(127, 255, 85, 85)
@@ -132,7 +132,7 @@ namespace ImageOps.UT.Sources
 
             Assert.That(result, Is.EqualTo(new[]
                 {
-                    PixelColor.FromArgb(0, 0, 0, 0),
+                    PixelColor.FromArgb(0, 255, 255, 255),
                     Color.White,
                     Color.Black,
                     PixelColor.FromRgb(127, 127, 127),
@@ -161,7 +161,7 @@ namespace ImageOps.UT.Sources
                     }
                 });
 
-            var result = BlendToArray(bitmap, mask, new AlphaMaskBlend(ColorChannel.Alpha));
+            var result = BlendToArray(bitmap, mask, BlendingMethods.AlphaMask);
 
             Assert.That(result, Is.EqualTo(new[]
                 {
@@ -178,11 +178,11 @@ namespace ImageOps.UT.Sources
         [TestCase(ColorChannel.Red, 100)]
         [TestCase(ColorChannel.Green, 150)]
         [TestCase(ColorChannel.Blue, 200)]
-        public void ShoukdApplyAlphaMaskUsingProperChannel(ColorChannel channel, byte expectedAlpha)
+        public void ShouldApplyAlphaMaskUsingProperChannel(ColorChannel channel, byte expectedAlpha)
         {
             var color = PixelColor.FromRgb(100, 100, 100).AsPixelSource(1, 1);
             var mask = PixelColor.FromArgb(50, 100, 150, 200).AsPixelSource(1, 1);
-            var result = BlendToArray(color, mask, new AlphaMaskBlend(channel));
+            var result = BlendToArray(color, mask, BlendingMethods.ChannelMask(channel));
             Assert.That(result.Single().A, Is.EqualTo(expectedAlpha));
         }
 

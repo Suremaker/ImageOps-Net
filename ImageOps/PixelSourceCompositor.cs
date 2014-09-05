@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ImageOps.Blenders;
 using ImageOps.Sources;
 using ImageOps.Sources.Regions;
@@ -45,7 +46,7 @@ namespace ImageOps
 
         public static IPixelSource AddAlphaMask(this IPixelSource source, IPixelSource mask, ColorChannel maskChannel = ColorChannel.Alpha)
         {
-            return source.Blend(new AlphaMaskBlend(maskChannel), mask);
+            return source.Blend(BlendingMethods.ChannelMask(maskChannel), mask);
         }
 
         public static IPixelSource RepeatSource(this IPixelSource source, int newWidth, int newHeight)

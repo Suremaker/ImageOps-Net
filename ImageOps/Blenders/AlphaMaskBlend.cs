@@ -1,40 +1,34 @@
-﻿using System;
-
-namespace ImageOps.Blenders
+﻿namespace ImageOps.Blenders
 {
-    public class AlphaMaskBlend : BlendingMethod
+    public class AlphaMaskBlend : IBlendingMethod
     {
-        private readonly Func<PixelColor, double> _alphaSelector;
-
-        public AlphaMaskBlend(ColorChannel maskChannel)
+        public PixelColor Blend(PixelColor source, PixelColor mask)
         {
-            _alphaSelector = CreateSelector(maskChannel);
+            return new PixelColor((byte)Discrete.MulRatio(source.A, mask.A), source.R, source.G, source.B);
         }
+    }
 
-        private static Func<PixelColor, double> CreateSelector(ColorChannel maskChannel)
+    public class RedMaskBlend : IBlendingMethod
+    {
+        public PixelColor Blend(PixelColor source, PixelColor mask)
         {
-            switch (maskChannel)
-            {
-                case ColorChannel.Red:
-                    return c => c.GetRed();
-                case ColorChannel.Green:
-                    return c => c.GetGreen();
-                case ColorChannel.Blue:
-                    return c => c.GetBlue();
-                default:
-                    return c => c.GetAlpha();
-            }
+            return new PixelColor((byte)Discrete.MulRatio(source.A, mask.R), source.R, source.G, source.B);
         }
+    }
 
-        public override PixelColor Blend(PixelColor source, PixelColor mask)
+    public class GreenMaskBlend : IBlendingMethod
+    {
+        public PixelColor Blend(PixelColor source, PixelColor mask)
         {
-            double alpha = CalculateAlpha(source.GetAlpha(), _alphaSelector(mask));
-            return PixelColor.FromFargb(alpha, source.GetRed(), source.GetGreen(), source.GetBlue());
+            return new PixelColor((byte)Discrete.MulRatio(source.A, mask.G), source.R, source.G, source.B);
         }
+    }
 
-        private static double CalculateAlpha(double sourceAlpha, double maskAlpha)
+    public class BlueMaskBlend : IBlendingMethod
+    {
+        public PixelColor Blend(PixelColor source, PixelColor mask)
         {
-            return sourceAlpha*maskAlpha;
+            return new PixelColor((byte)Discrete.MulRatio(source.A, mask.B), source.R, source.G, source.B);
         }
     }
 }

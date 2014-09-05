@@ -1,23 +1,23 @@
 ﻿namespace ImageOps.Blenders
 {
-    public class NormalBlend : BlendingMethod
+    public class NormalBlend : IBlendingMethod
     {
-        public override PixelColor Blend(PixelColor back, PixelColor front)
+        public PixelColor Blend(PixelColor back, PixelColor front)
         {
-            var backAlpha = back.GetAlpha();
-            var frontAlpha = front.GetAlpha();
-            var outAlpha = backAlpha + frontAlpha - backAlpha*frontAlpha;
+            var backAlpha = back.A;
+            var frontAlpha = front.A;
+            var outAlpha = (byte)(backAlpha + frontAlpha - Discrete.MulRatio(backAlpha, frontAlpha));
 
-            return PixelColor.FromFargb(
+            return new PixelColor(
                 outAlpha,
-                Blend(back.GetRed(), front.GetRed(), backAlpha, frontAlpha, outAlpha),
-                Blend(back.GetGreen(), front.GetGreen(), backAlpha, frontAlpha, outAlpha),
-                Blend(back.GetBlue(), front.GetBlue(), backAlpha, frontAlpha, outAlpha));
+                Blend(back.R, front.R, backAlpha, frontAlpha, outAlpha),
+                Blend(back.G, front.G, backAlpha, frontAlpha, outAlpha),
+                Blend(back.B, front.B, backAlpha, frontAlpha, outAlpha));
         }
 
-        protected double Blend(double color1, double color2, double alpha1, double alpha2, double alpha3)
+        private static byte Blend(int backColor, int frontColor, int backAlpha, int frontAlpha, int outAlpha)
         {
-            return (color2*alpha2 + Comp(color1*alpha1, alpha2))/alpha3;
+            return (byte)((Discrete.MulRatio(frontColor, frontAlpha) + Discrete.CompRatio(Discrete.MulRatio(backColor, backAlpha), frontAlpha)) * Discrete.MaxColor / outAlpha);
         }
     }
 }
