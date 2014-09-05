@@ -4,7 +4,7 @@
     {
         protected override double Blend(double color1, double color2)
         {
-            return color1 + color2;
+            return Clamp(color1 + color2);
         }
     }
 }

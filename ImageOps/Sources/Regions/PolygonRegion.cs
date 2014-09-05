@@ -35,7 +35,7 @@ namespace ImageOps.Sources.Regions
                 return isCrossed ? (PointF?)new PointF((float)crossX, startPoint.Y) : null;
             }
 
-            private bool IsOnOppositeSides(int sy1, int sy2, int py)
+            private static bool IsOnOppositeSides(int sy1, int sy2, int py)
             {
                 return Math.Sign(py - sy1) * Math.Sign(py - sy2) != 1;
             }

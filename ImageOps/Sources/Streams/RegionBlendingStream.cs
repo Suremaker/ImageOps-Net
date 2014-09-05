@@ -47,7 +47,7 @@ namespace ImageOps.Sources.Streams
             }
         }
 
-        private void MoveInnerStream(RegionStream region, int x, int y)
+        private static void MoveInnerStream(RegionStream region, int x, int y)
         {
             var boundingBox = region.BlendedRegion.Region.BoundingBox;
             var newPosition = (y - boundingBox.Y) * boundingBox.Width + (x - boundingBox.X);

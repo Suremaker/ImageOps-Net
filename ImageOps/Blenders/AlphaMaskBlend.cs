@@ -11,7 +11,7 @@ namespace ImageOps.Blenders
             _alphaSelector = CreateSelector(maskChannel);
         }
 
-        private Func<PixelColor, double> CreateSelector(ColorChannel maskChannel)
+        private static Func<PixelColor, double> CreateSelector(ColorChannel maskChannel)
         {
             switch (maskChannel)
             {
@@ -32,7 +32,7 @@ namespace ImageOps.Blenders
             return PixelColor.FromFargb(alpha, source.GetRed(), source.GetGreen(), source.GetBlue());
         }
 
-        private double CalculateAlpha(double sourceAlpha, double maskAlpha)
+        private static double CalculateAlpha(double sourceAlpha, double maskAlpha)
         {
             return sourceAlpha*maskAlpha;
         }

@@ -13,7 +13,8 @@ namespace ImageOps.Blenders
 
         protected static double Clamp(double value)
         {
-            return Math.Min(1, Math.Max(0, value));
+            if (value > 1) return 1;
+            return value > 0 ? value : 0;
         }
     }
 }

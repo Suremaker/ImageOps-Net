@@ -23,12 +23,12 @@ namespace ImageOps.Blenders
 
         private double Blend(double color1, double color2, double ratio)
         {
-            return Clamp(Blend(color1, color2))*ratio + Comp(color1, ratio);
+            return Blend(color1, color2)*ratio + Comp(color1, ratio);
         }
 
         protected abstract double Blend(double color1, double color2);
 
-        private double CalcRatio(double backAlpha, double frontAlpha)
+        private static double CalcRatio(double backAlpha, double frontAlpha)
         {
             var minAlpha = Math.Min(backAlpha, frontAlpha);
             var newAlpha = backAlpha + Comp(minAlpha, backAlpha);
