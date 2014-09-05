@@ -138,7 +138,7 @@ namespace ImageOps.UT.Sources
                     PixelColor.FromRgb(127, 127, 127),
                     Color.White,
                     PixelColor.FromArgb(127, 126, 143, 159),
-                    PixelColor.FromArgb(127, 125, 141, 156)
+                    PixelColor.FromArgb(127, 125, 140, 156)
                 }));
         }
 

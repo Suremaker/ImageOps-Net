@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ImageOps.Blenders
+﻿namespace ImageOps.Blenders
 {
     public abstract class BlendingMethod : IBlendingMethod
     {

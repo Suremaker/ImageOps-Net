@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BitmapCreator.cs" />
+    <Compile Include="Blenders\Discrete.cs" />
     <Compile Include="BlendingMethods.cs" />
     <Compile Include="PixelRectangle.cs" />
     <Compile Include="Sources\BlendedRegion.cs" />
