@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ImageOps.Sources.Streams
+namespace ImageOps.Sources.Readers
 {
-    public abstract class SourceStream<TSource> : IPixelStream where TSource : IPixelSource
+    public abstract class SourceReader<TSource> : IPixelReader where TSource : IPixelSource
     {
         protected TSource Source { get; private set; }
 
-        protected SourceStream(TSource source)
+        protected SourceReader(TSource source)
         {
             Source = source;
             Width = Source.ImageWidth;
@@ -29,7 +29,14 @@ namespace ImageOps.Sources.Streams
             return GetEnumerator();
         }
 
-        public abstract PixelColor Get(int x, int y);
+        public PixelColor Get(int x, int y)
+        {
+            if (x < 0 || x >= Width || y < 0 || y >= Height)
+                throw new ArgumentOutOfRangeException();
+            return FastGet(x, y);
+        }
+
+        protected abstract PixelColor FastGet(int x, int y);
 
         public int Width { get; private set; }
         public int Height { get; private set; }

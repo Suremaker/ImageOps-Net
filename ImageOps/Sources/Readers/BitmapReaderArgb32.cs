@@ -1,16 +1,16 @@
-namespace ImageOps.Sources.Streams
+namespace ImageOps.Sources.Readers
 {
-    internal class BitmapStreamArgb32 : BitmapStream
+    internal class BitmapReaderArgb32 : BitmapReader
     {
         private readonly unsafe uint* _pointer;
 
-        public unsafe BitmapStreamArgb32(IPixelSource source, BitmapLocker locker) 
+        public unsafe BitmapReaderArgb32(IPixelSource source, BitmapLocker locker) 
             : base(source, locker)
         {
             _pointer = (uint*)Data.Scan0.ToPointer();
         }
 
-        public override unsafe PixelColor Get(int x, int y)
+        protected override unsafe PixelColor FastGet(int x, int y)
         {
             return new PixelColor(_pointer[y*Width+x]);
         }

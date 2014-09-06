@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ImageOps.Blenders;
+using ImageOps.Sources.Readers;
 using ImageOps.Sources.Regions;
-using ImageOps.Sources.Streams;
 
 namespace ImageOps.Sources
 {
@@ -33,9 +33,9 @@ namespace ImageOps.Sources
 
         public int ImageWidth { get; private set; }
         public int ImageHeight { get; private set; }
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
-            return new RegionBlendingStream(this);
+            return new RegionBlendingReader(this);
         }
     }
 }

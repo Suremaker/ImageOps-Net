@@ -1,5 +1,5 @@
 using System;
-using ImageOps.Sources.Streams;
+using ImageOps.Sources.Readers;
 
 namespace ImageOps.Sources
 {
@@ -40,9 +40,9 @@ namespace ImageOps.Sources
             get { return CroppedRegion.Height; }
         }
 
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
-            return new CroppingStream(this);
+            return new CroppingReader(this);
         }
     }
 }

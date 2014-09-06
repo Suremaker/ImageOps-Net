@@ -1,5 +1,5 @@
 ﻿using System;
-using ImageOps.Sources.Streams;
+using ImageOps.Sources.Readers;
 
 namespace ImageOps.Sources
 {
@@ -20,9 +20,9 @@ namespace ImageOps.Sources
         public int ImageHeight { get; private set; }
         public Func<int, int, PixelColor> ColorFunction { get; private set; }
 
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
-            return new ComputingStream(this);
+            return new ComputingReader(this);
         }
     }
 }

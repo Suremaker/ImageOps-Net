@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace ImageOps.Sources.Streams
+namespace ImageOps.Sources.Readers
 {
-    public interface IPixelStream : IDisposable, IEnumerable<PixelColor>
+    public interface IPixelReader : IDisposable, IEnumerable<PixelColor>
     {
         PixelColor Get(int x, int y);
         int Width { get; }

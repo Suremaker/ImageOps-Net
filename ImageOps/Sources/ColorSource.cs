@@ -1,4 +1,4 @@
-﻿using ImageOps.Sources.Streams;
+﻿using ImageOps.Sources.Readers;
 
 namespace ImageOps.Sources
 {
@@ -15,9 +15,9 @@ namespace ImageOps.Sources
         public int ImageHeight { get; private set; }
         public PixelColor Color { get; private set; }
 
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
-            return new ColorStream(this);
+            return new ColorReader(this);
         }
 
         public void Dispose()

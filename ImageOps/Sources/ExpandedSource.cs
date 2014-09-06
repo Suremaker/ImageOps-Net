@@ -1,4 +1,4 @@
-﻿using ImageOps.Sources.Streams;
+﻿using ImageOps.Sources.Readers;
 
 namespace ImageOps.Sources
 {
@@ -26,9 +26,9 @@ namespace ImageOps.Sources
             ImageHeight = topMargin + OriginalSource.ImageHeight + bottomMargin;
         }
 
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
-            return new ExpandingStream(this);
+            return new ExpandingReader(this);
         }
 
         public void Dispose()

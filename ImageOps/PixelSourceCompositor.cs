@@ -10,7 +10,7 @@ namespace ImageOps
     {
         public static IPixelSource Blend(this IPixelSource source, IBlendingMethod method, params IPixelSource[] layers)
         {
-            return layers.Aggregate(source, (current, stream) => new BlendedSource(method, current, stream));
+            return layers.Aggregate(source, (current, layer) => new BlendedSource(method, current, layer));
         }
 
         public static IPixelSource BlendRegion(this IPixelSource source, IRegion region, IPixelSource layer, IBlendingMethod blendingMethod)

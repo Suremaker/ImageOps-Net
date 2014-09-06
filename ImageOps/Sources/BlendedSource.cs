@@ -1,6 +1,6 @@
 ﻿using System;
 using ImageOps.Blenders;
-using ImageOps.Sources.Streams;
+using ImageOps.Sources.Readers;
 
 namespace ImageOps.Sources
 {
@@ -25,9 +25,9 @@ namespace ImageOps.Sources
 
         public int ImageHeight { get; private set; }
 
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
-            return new BlendingStream(this);
+            return new BlendingReader(this);
         }
 
         public void Dispose()

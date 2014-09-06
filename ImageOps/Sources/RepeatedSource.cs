@@ -1,4 +1,4 @@
-using ImageOps.Sources.Streams;
+using ImageOps.Sources.Readers;
 
 namespace ImageOps.Sources
 {
@@ -19,9 +19,9 @@ namespace ImageOps.Sources
 
         public int ImageWidth { get; private set; }
         public int ImageHeight { get; private set; }
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
-            return new RepeatingStream(this);
+            return new RepeatingReader(this);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using ImageOps.Sources.Streams;
+using ImageOps.Sources.Readers;
 
 namespace ImageOps.Sources
 {
@@ -22,16 +22,16 @@ namespace ImageOps.Sources
         public int ImageWidth { get; private set; }
         public int ImageHeight { get; private set; }
 
-        public IPixelStream OpenStream()
+        public IPixelReader OpenReader()
         {
             switch (Bitmap.PixelFormat)
             {
                 case PixelFormat.Format32bppArgb:
-                    return new BitmapStreamArgb32(this, _bitmapLocker);
+                    return new BitmapReaderArgb32(this, _bitmapLocker);
                 case PixelFormat.Format32bppRgb:
-                    return new BitmapStreamRgb32(this, _bitmapLocker);
+                    return new BitmapReaderRgb32(this, _bitmapLocker);
                 case PixelFormat.Format24bppRgb:
-                    return new BitmapStreamRgb24(this, _bitmapLocker);
+                    return new BitmapReaderRgb24(this, _bitmapLocker);
                 default:
                     throw new NotSupportedException(
                         string.Format("Pixel format {0} is not supported. Use 32bppArgb, 32bppRgb or 24bppRgb.",

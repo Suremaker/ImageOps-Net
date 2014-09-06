@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ImageOps.Sources;
 using NUnit.Framework;
@@ -22,24 +23,34 @@ namespace ImageOps.UT.Helpers
         [Test]
         public void ShouldOpenStreamWithProperSize()
         {
-            var stream = Subject.OpenStream();
-            Assert.That(stream.Width, Is.EqualTo(ExpectedWidth));
-            Assert.That(stream.Height, Is.EqualTo(ExpectedHeight));
+            var reader = Subject.OpenReader();
+            Assert.That(reader.Width, Is.EqualTo(ExpectedWidth));
+            Assert.That(reader.Height, Is.EqualTo(ExpectedHeight));
         }
 
         [Test]
         public void ShouldOpenStreamAndReturnProperPixels()
         {
-            var stream = Subject.OpenStream();
+            var reader = Subject.OpenReader();
             for (int x = 0; x < ExpectedWidth; ++x)
                 for (int y = 0; y < ExpectedHeight; ++y)
-                    Assert.That(stream.Get(x, y), Is.EqualTo(ExpectedColors[y * ExpectedWidth + x]));
+                    Assert.That(reader.Get(x, y), Is.EqualTo(ExpectedColors[y * ExpectedWidth + x]));
         }
 
         [Test]
         public void ShouldOpenStreamAndReadAllPixels()
         {
-            Assert.That(Subject.OpenStream().ToArray(), Is.EqualTo(ExpectedColors));
+            Assert.That(Subject.OpenReader().ToArray(), Is.EqualTo(ExpectedColors));
+        }
+
+        [Test]
+        public void ShouldNotAllowToAccessPixelsFromOutsideOfBoundaries()
+        {
+            var reader = Subject.OpenReader();
+            Assert.Throws<ArgumentOutOfRangeException>(() => reader.Get(-1, 0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => reader.Get(0, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => reader.Get(ExpectedWidth, 0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => reader.Get(0, ExpectedHeight));
         }
 
         [TearDown]
