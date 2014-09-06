@@ -20,35 +20,20 @@ namespace ImageOps.UT.Helpers
         }
 
         [Test]
-        public void ShouldOpenStreamWithProperLength()
-        {
-            Assert.That(Subject.OpenStream().Length, Is.EqualTo(ExpectedWidth*ExpectedHeight));
-        }
-
-        [Test]
-        public void ShouldOpenStreamWith0Position()
-        {
-            Assert.That(Subject.OpenStream().Position, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void ShouldOpenStreamWithAbilityToMove()
+        public void ShouldOpenStreamWithProperSize()
         {
             var stream = Subject.OpenStream();
-            stream.Move(1);
-            Assert.That(stream.Position, Is.EqualTo(1));
-            stream.Move(1);
-            Assert.That(stream.Position, Is.EqualTo(2));
-            stream.Move(-1);
-            Assert.That(stream.Position, Is.EqualTo(1));
+            Assert.That(stream.Width, Is.EqualTo(ExpectedWidth));
+            Assert.That(stream.Height, Is.EqualTo(ExpectedHeight));
         }
 
         [Test]
-        public void ShouldOpenStreamAndGetFirstPixelAndStayOnTheSamePosition()
+        public void ShouldOpenStreamAndReturnProperPixels()
         {
             var stream = Subject.OpenStream();
-            Assert.That(stream.GetCurrent(), Is.EqualTo(ExpectedColors.First()));
-            Assert.That(stream.Position, Is.EqualTo(0));
+            for (int x = 0; x < ExpectedWidth; ++x)
+                for (int y = 0; y < ExpectedHeight; ++y)
+                    Assert.That(stream.Get(x, y), Is.EqualTo(ExpectedColors[y * ExpectedWidth + x]));
         }
 
         [Test]

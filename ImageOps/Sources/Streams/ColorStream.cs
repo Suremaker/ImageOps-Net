@@ -7,15 +7,7 @@ namespace ImageOps.Sources.Streams
         {
         }
 
-        public override void Dispose()
-        {
-        }
-
-        public override void MoveBy(int delta)
-        {
-        }
-
-        public override PixelColor GetCurrent()
+        public override PixelColor Get(int x, int y)
         {
             return Source.Color;
         }

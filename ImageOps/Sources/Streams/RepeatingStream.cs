@@ -15,19 +15,9 @@ namespace ImageOps.Sources.Streams
             _stream.Dispose();
         }
 
-        public override void MoveBy(int delta)
+        public override PixelColor Get(int x, int y)
         {
-            int repeatedX = (Position + delta) % Source.ImageWidth;
-            int repeatedY = (Position + delta) / Source.ImageWidth;
-            int originalX = repeatedX % Source.OriginalSource.ImageWidth;
-            int originalY = repeatedY % Source.OriginalSource.ImageHeight;
-            int originalPos = originalY * Source.OriginalSource.ImageWidth + originalX;
-            _stream.Move(originalPos - _stream.Position);
-        }
-
-        public override PixelColor GetCurrent()
-        {
-            return _stream.GetCurrent();
+            return _stream.Get(x%_stream.Width, y%_stream.Height);
         }
     }
 }

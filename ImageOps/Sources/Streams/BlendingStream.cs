@@ -18,15 +18,9 @@ namespace ImageOps.Sources.Streams
             _background.Dispose();
         }
 
-        public override void MoveBy(int delta)
+        public override PixelColor Get(int x, int y)
         {
-            _foreground.Move(delta);
-            _background.Move(delta);
-        }
-
-        public override PixelColor GetCurrent()
-        {
-            return Source.BlendingMethod.Blend(_background.GetCurrent(), _foreground.GetCurrent());
+            return Source.BlendingMethod.Blend(_background.Get(x, y), _foreground.Get(x, y));
         }
     }
 }

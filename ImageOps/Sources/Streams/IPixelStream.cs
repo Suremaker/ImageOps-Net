@@ -5,10 +5,8 @@ namespace ImageOps.Sources.Streams
 {
     public interface IPixelStream : IDisposable, IEnumerable<PixelColor>
     {
-        void Move(int delta);
-        int Position { get; }
-        int Length { get; }
-        bool IsEnd { get; }
-        PixelColor GetCurrent();
+        PixelColor Get(int x, int y);
+        int Width { get; }
+        int Height { get; }
     }
 }

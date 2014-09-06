@@ -11,44 +11,27 @@ namespace ImageOps.Sources.Streams
         protected SourceStream(TSource source)
         {
             Source = source;
-            Length = Source.ImageWidth * Source.ImageHeight;
+            Width = Source.ImageWidth;
+            Height = Source.ImageHeight;
         }
 
-        public abstract void Dispose();
-
-        public void Move(int delta)
-        {
-            if (Position + delta < 0 || Position + delta > Length)
-                throw new ArgumentOutOfRangeException();
-            MoveBy(delta);
-            Position += delta;
-        }
-
-        public abstract void MoveBy(int delta);
-
-        public int Position { get; private set; }
-
-        public int Length { get; private set; }
-
-        public bool IsEnd
-        {
-            get { return Position == Length; }
-        }
-
-        public abstract PixelColor GetCurrent();
+        public virtual void Dispose() { }
 
         public IEnumerator<PixelColor> GetEnumerator()
         {
-            while (!IsEnd)
-            {
-                yield return GetCurrent();
-                Move(1);
-            }
+            for (int y = 0; y < Height; y += 1)
+                for (int x = 0; x < Width; x += 1)
+                    yield return Get(x, y);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
+
+        public abstract PixelColor Get(int x, int y);
+
+        public int Width { get; private set; }
+        public int Height { get; private set; }
     }
 }

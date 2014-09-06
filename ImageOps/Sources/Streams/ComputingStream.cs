@@ -7,17 +7,9 @@
         {
         }
 
-        public override void Dispose()
+        public override PixelColor Get(int x, int y)
         {
-        }
-
-        public override void MoveBy(int delta)
-        {
-        }
-
-        public override PixelColor GetCurrent()
-        {
-            return Source.ColorFunction(Position % Source.ImageWidth, Position / Source.ImageWidth);
+            return Source.ColorFunction(x, y);
         }
     }
 }

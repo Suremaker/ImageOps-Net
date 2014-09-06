@@ -25,7 +25,6 @@ namespace ImageOps.Sources.Streams
         {
             _regionStreams = source.Regions.Select(r => new RegionStream(r, r.Source.OpenStream(), false)).ToArray();
             _stream = source.OriginalSource.OpenStream();
-            MoveBy(0);
         }
 
         public override void Dispose()
@@ -34,33 +33,15 @@ namespace ImageOps.Sources.Streams
                 region.Stream.Dispose();
         }
 
-        public override void MoveBy(int delta)
+        public override PixelColor Get(int x, int y)
         {
-            _stream.Move(delta);
-            var newPos = Position + delta;
-            var y = newPos / Source.ImageHeight;
-            var x = newPos % Source.ImageWidth;
+            PixelColor current = _stream.Get(x, y);
             foreach (var region in _regionStreams)
             {
-                if ((region.IsActive = region.BlendedRegion.Region.IsInside(x, y)))
-                    MoveInnerStream(region, x, y);
-            }
-        }
-
-        private static void MoveInnerStream(RegionStream region, int x, int y)
-        {
-            var boundingBox = region.BlendedRegion.Region.BoundingBox;
-            var newPosition = (y - boundingBox.Y) * boundingBox.Width + (x - boundingBox.X);
-            region.Stream.Move(newPosition - region.Stream.Position);
-        }
-
-        public override PixelColor GetCurrent()
-        {
-            PixelColor current = _stream.GetCurrent();
-            foreach (var region in _regionStreams)
-            {
-                if (region.IsActive)
-                    current = region.BlendedRegion.BlendingMethod.Blend(current, region.Stream.GetCurrent());
+                if (region.BlendedRegion.Region.IsInside(x, y))
+                {
+                    current = region.BlendedRegion.BlendingMethod.Blend(current, region.Stream.Get(x - region.BlendedRegion.Region.BoundingBox.X, y - region.BlendedRegion.Region.BoundingBox.Y));
+                }
             }
             return current;
         }

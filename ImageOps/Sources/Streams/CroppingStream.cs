@@ -8,7 +8,6 @@ namespace ImageOps.Sources.Streams
             : base(source)
         {
             _stream = Source.OriginalSource.OpenStream();
-            _stream.Move(Source.BaseOffset);
         }
 
         public override void Dispose()
@@ -16,16 +15,9 @@ namespace ImageOps.Sources.Streams
             _stream.Dispose();
         }
 
-        public override void MoveBy(int delta)
+        public override PixelColor Get(int x, int y)
         {
-            var cropPos = delta + Position;
-            var expectedPos = Source.BaseOffset + cropPos + (cropPos / Source.CroppedRegion.Width) * Source.SkippedPixels;
-            _stream.Move(expectedPos - _stream.Position);
-        }
-
-        public override PixelColor GetCurrent()
-        {
-            return _stream.GetCurrent();
+            return _stream.Get(Source.CroppedRegion.X + x, Source.CroppedRegion.Y + y);
         }
     }
 }
