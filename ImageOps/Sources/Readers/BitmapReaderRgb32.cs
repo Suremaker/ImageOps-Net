@@ -12,7 +12,7 @@ namespace ImageOps.Sources.Readers
 
         protected override unsafe PixelColor FastGet(int x, int y)
         {
-            return new PixelColor(0xff000000 | _pointer[y*Width + x]);
+            return new PixelColor(0xff000000 | _pointer[y * Width + x]);
         }
     }
 }

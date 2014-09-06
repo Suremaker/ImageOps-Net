@@ -4,7 +4,7 @@ namespace ImageOps.Sources.Readers
     {
         private readonly unsafe uint* _pointer;
 
-        public unsafe BitmapReaderArgb32(IPixelSource source, BitmapLocker locker) 
+        public unsafe BitmapReaderArgb32(IPixelSource source, BitmapLocker locker)
             : base(source, locker)
         {
             _pointer = (uint*)Data.Scan0.ToPointer();
@@ -12,7 +12,7 @@ namespace ImageOps.Sources.Readers
 
         protected override unsafe PixelColor FastGet(int x, int y)
         {
-            return new PixelColor(_pointer[y*Width+x]);
+            return new PixelColor(_pointer[y * Width + x]);
         }
     }
 }

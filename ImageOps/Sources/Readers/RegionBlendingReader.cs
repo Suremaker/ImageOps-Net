@@ -1,47 +1,67 @@
+using System;
 using System.Linq;
+using ImageOps.Blenders;
+using ImageOps.Sources.Regions;
 
 namespace ImageOps.Sources.Readers
 {
+    internal class RegionMaskedBlendingReader : IDisposable
+    {
+        public RegionMaskedBlendingReader(BlendedRegion blendedRegion)
+        {
+            _blendingMethod = blendedRegion.BlendingMethod;
+            _reader = blendedRegion.Source.OpenReader();
+            _region = blendedRegion.Region;
+            _leftMargin = blendedRegion.Region.BoundingBox.X;
+            _topMargin = blendedRegion.Region.BoundingBox.Y;
+        }
+
+        private readonly int _topMargin;
+        private readonly int _leftMargin;
+        private readonly IRegion _region;
+        private readonly IPixelReader _reader;
+        private readonly IBlendingMethod _blendingMethod;
+
+        public PixelColor BlendWith(PixelColor current, int x, int y)
+        {
+            return _blendingMethod.Blend(current, _reader.Get(x - _leftMargin, y - _topMargin));
+        }
+        public bool IsInside(int x, int y)
+        {
+            return _region.IsInside(x, y);
+        }
+
+        public void Dispose()
+        {
+            _reader.Dispose();
+        }
+    }
+
     internal class RegionBlendingReader : SourceReader<RegionBlendedSource>
     {
-        class RegionStream
-        {
-            public RegionStream(BlendedRegion blendedRegion, IPixelReader reader, bool isActive)
-            {
-                BlendedRegion = blendedRegion;
-                Reader = reader;
-                IsActive = isActive;
-            }
-
-            public BlendedRegion BlendedRegion { get; private set; }
-            public IPixelReader Reader { get; private set; }
-            public bool IsActive { get; set; }
-        }
         private readonly IPixelReader _reader;
-        private readonly RegionStream[] _regionStreams;
+        private readonly RegionMaskedBlendingReader[] _regionReaders;
 
         public RegionBlendingReader(RegionBlendedSource source)
             : base(source)
         {
-            _regionStreams = source.Regions.Select(r => new RegionStream(r, r.Source.OpenReader(), false)).ToArray();
+            _regionReaders = source.Regions.Select(r => new RegionMaskedBlendingReader(r)).ToArray();
             _reader = source.OriginalSource.OpenReader();
         }
 
         public override void Dispose()
         {
-            foreach (var region in _regionStreams)
-                region.Reader.Dispose();
+            foreach (var reader in _regionReaders)
+                reader.Dispose();
         }
 
         protected override PixelColor FastGet(int x, int y)
         {
             PixelColor current = _reader.Get(x, y);
-            foreach (var region in _regionStreams)
+            foreach (var reader in _regionReaders)
             {
-                if (region.BlendedRegion.Region.IsInside(x, y))
-                {
-                    current = region.BlendedRegion.BlendingMethod.Blend(current, region.Reader.Get(x - region.BlendedRegion.Region.BoundingBox.X, y - region.BlendedRegion.Region.BoundingBox.Y));
-                }
+                if (reader.IsInside(x, y))
+                    current = reader.BlendWith(current, x, y);
             }
             return current;
         }
