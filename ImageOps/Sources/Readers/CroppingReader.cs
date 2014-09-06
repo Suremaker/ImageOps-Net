@@ -2,14 +2,14 @@ namespace ImageOps.Sources.Readers
 {
     internal class CroppingReader : SourceReader<CroppedSource>
     {
-        private readonly IPixelReader _reader;
+        private readonly IVerifiedPixelReader _reader;
         private readonly int _leftMargin;
         private readonly int _topMargin;
 
         public CroppingReader(CroppedSource source)
             : base(source)
         {
-            _reader = Source.OriginalSource.OpenReader();
+            _reader = Source.OriginalSource.OpenReader().InVerifiedContext();
             _leftMargin = Source.CroppedRegion.X;
             _topMargin = Source.CroppedRegion.Y;
         }
@@ -19,9 +19,9 @@ namespace ImageOps.Sources.Readers
             _reader.Dispose();
         }
 
-        protected override PixelColor FastGet(int x, int y)
+        public override PixelColor VerifiedGet(int x, int y)
         {
-            return _reader.Get(_leftMargin + x, _topMargin + y);
+            return _reader.VerifiedGet(_leftMargin + x, _topMargin + y);
         }
     }
 }

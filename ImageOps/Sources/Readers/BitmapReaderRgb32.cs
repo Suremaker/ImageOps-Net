@@ -10,7 +10,7 @@ namespace ImageOps.Sources.Readers
             _pointer = (uint*)locker.Lock().Scan0.ToPointer();
         }
 
-        protected override unsafe PixelColor FastGet(int x, int y)
+        public override unsafe PixelColor VerifiedGet(int x, int y)
         {
             return new PixelColor(0xff000000 | _pointer[y * Width + x]);
         }

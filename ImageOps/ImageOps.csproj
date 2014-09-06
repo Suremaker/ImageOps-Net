@@ -38,6 +38,7 @@
     <Compile Include="Blenders\Discrete.cs" />
     <Compile Include="BlendingMethods.cs" />
     <Compile Include="PixelRectangle.cs" />
+    <Compile Include="PixelReaderConverter.cs" />
     <Compile Include="Sources\BlendedRegion.cs" />
     <Compile Include="Sources\ComputedSource.cs" />
     <Compile Include="Sources\IPixelSource.cs" />
@@ -69,9 +70,11 @@
     <Compile Include="Sources\Readers\CroppingReader.cs" />
     <Compile Include="Sources\Readers\ExpandingReader.cs" />
     <Compile Include="Sources\Readers\IPixelReader.cs" />
+    <Compile Include="Sources\Readers\IVerifiedPixelReader.cs" />
     <Compile Include="Sources\Readers\RegionBlendingReader.cs" />
     <Compile Include="Sources\Readers\RepeatingReader.cs" />
     <Compile Include="Sources\Readers\SourceReader.cs" />
+    <Compile Include="Sources\Readers\VerifiedPixelReaderProxy.cs" />
     <Compile Include="Sources\RegionBlendedSource.cs" />
     <Compile Include="Sources\Regions\IRegion.cs" />
     <Compile Include="Sources\Regions\PolygonRegion.cs" />

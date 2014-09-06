@@ -17,7 +17,7 @@ namespace ImageOps.Sources.Readers
             return (_dataStride * y) + x * 3;
         }
 
-        protected override unsafe PixelColor FastGet(int x, int y)
+        public override unsafe PixelColor VerifiedGet(int x, int y)
         {
             var index = GetPointerIndex(x, y);
             return PixelColor.FromRgb(_pointer[index + 2], _pointer[index + 1], _pointer[index + 0]);

@@ -193,7 +193,7 @@ namespace ImageOps.UT.Sources
 
         private static PixelColor[] BlendToArray(IPixelSource back, IPixelSource front, IBlendingMethod blendingMethod)
         {
-            return new BlendedSource(blendingMethod, back, front).OpenReader().ToArray();
+            return new BlendedSource(blendingMethod, back, front).OpenReader().AsEnumerable().ToArray();
         }
     }
 }

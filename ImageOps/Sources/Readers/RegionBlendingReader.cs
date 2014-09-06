@@ -10,7 +10,7 @@ namespace ImageOps.Sources.Readers
         public RegionMaskedBlendingReader(BlendedRegion blendedRegion)
         {
             _blendingMethod = blendedRegion.BlendingMethod;
-            _reader = blendedRegion.Source.OpenReader();
+            _reader = blendedRegion.Source.OpenReader().InVerifiedContext();
             _region = blendedRegion.Region;
             _leftMargin = blendedRegion.Region.BoundingBox.X;
             _topMargin = blendedRegion.Region.BoundingBox.Y;
@@ -19,12 +19,12 @@ namespace ImageOps.Sources.Readers
         private readonly int _topMargin;
         private readonly int _leftMargin;
         private readonly IRegion _region;
-        private readonly IPixelReader _reader;
+        private readonly IVerifiedPixelReader _reader;
         private readonly IBlendingMethod _blendingMethod;
 
         public PixelColor BlendWith(PixelColor current, int x, int y)
         {
-            return _blendingMethod.Blend(current, _reader.Get(x - _leftMargin, y - _topMargin));
+            return _blendingMethod.Blend(current, _reader.VerifiedGet(x - _leftMargin, y - _topMargin));
         }
         public bool IsInside(int x, int y)
         {
@@ -39,14 +39,14 @@ namespace ImageOps.Sources.Readers
 
     internal class RegionBlendingReader : SourceReader<RegionBlendedSource>
     {
-        private readonly IPixelReader _reader;
+        private readonly IVerifiedPixelReader _reader;
         private readonly RegionMaskedBlendingReader[] _regionReaders;
 
         public RegionBlendingReader(RegionBlendedSource source)
             : base(source)
         {
             _regionReaders = source.Regions.Select(r => new RegionMaskedBlendingReader(r)).ToArray();
-            _reader = source.OriginalSource.OpenReader();
+            _reader = source.OriginalSource.OpenReader().InVerifiedContext();
         }
 
         public override void Dispose()
@@ -55,9 +55,9 @@ namespace ImageOps.Sources.Readers
                 reader.Dispose();
         }
 
-        protected override PixelColor FastGet(int x, int y)
+        public override PixelColor VerifiedGet(int x, int y)
         {
-            PixelColor current = _reader.Get(x, y);
+            PixelColor current = _reader.VerifiedGet(x, y);
             foreach (var reader in _regionReaders)
             {
                 if (reader.IsInside(x, y))

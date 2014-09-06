@@ -2,7 +2,7 @@ namespace ImageOps.Sources.Readers
 {
     internal class ExpandingReader : SourceReader<ExpandedSource>
     {
-        private readonly IPixelReader _reader;
+        private readonly IVerifiedPixelReader _reader;
         private readonly int _leftMargin;
         private readonly int _topMargin;
         private readonly int _originalWidth;
@@ -11,7 +11,7 @@ namespace ImageOps.Sources.Readers
         public ExpandingReader(ExpandedSource expandCanvas)
             : base(expandCanvas)
         {
-            _reader = Source.OriginalSource.OpenReader();
+            _reader = Source.OriginalSource.OpenReader().InVerifiedContext();
             _leftMargin = Source.LeftMargin;
             _topMargin = Source.TopMargin;
             _originalWidth = Source.OriginalSource.ImageWidth;
@@ -23,12 +23,12 @@ namespace ImageOps.Sources.Readers
             _reader.Dispose();
         }
 
-        protected override PixelColor FastGet(int x, int y)
+        public override PixelColor VerifiedGet(int x, int y)
         {
             x -= _leftMargin;
             y -= _topMargin;
             if (x >= 0 && x < _originalWidth && y >= 0 && y < _originalHeight)
-                return _reader.Get(x, y);
+                return _reader.VerifiedGet(x, y);
             return Source.ExpandedColor;
         }
     }

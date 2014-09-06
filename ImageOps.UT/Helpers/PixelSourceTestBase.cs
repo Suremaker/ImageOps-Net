@@ -40,7 +40,7 @@ namespace ImageOps.UT.Helpers
         [Test]
         public void ShouldOpenStreamAndReadAllPixels()
         {
-            Assert.That(Subject.OpenReader().ToArray(), Is.EqualTo(ExpectedColors));
+            Assert.That(Subject.OpenReader().AsEnumerable().ToArray(), Is.EqualTo(ExpectedColors));
         }
 
         [Test]

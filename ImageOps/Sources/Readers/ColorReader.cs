@@ -7,7 +7,7 @@ namespace ImageOps.Sources.Readers
         {
         }
 
-        protected override PixelColor FastGet(int x, int y)
+        public override PixelColor VerifiedGet(int x, int y)
         {
             return Source.Color;
         }
