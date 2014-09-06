@@ -35,5 +35,10 @@ namespace ImageOps
         {
             return new PixelRectangle(left, top, right - left + 1, bottom - top + 1);
         }
+
+        public bool IsInside(int x, int y)
+        {
+            return x >= Left && y >= Top && x <= Right && y <= Bottom;
+        }
     }
 }

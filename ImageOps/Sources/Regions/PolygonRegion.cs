@@ -53,18 +53,18 @@ namespace ImageOps.Sources.Regions
 
         public bool IsInside(int x, int y)
         {
-            if (x < BoundingBox.Left || x > BoundingBox.Right || y < BoundingBox.Top || y > BoundingBox.Bottom)
+            if (!BoundingBox.IsInside(x, y))
                 return false;
             var px = new Point(x, y);
             int crossCount = 0;
             foreach (var section in _sections)
             {
-                var point=section.IsCrossedByLeftHorizontalRay(px);
-                if (point == null) 
+                var point = section.IsCrossedByLeftHorizontalRay(px);
+                if (point == null)
                     continue;
-                if (point.Value.X == x && point.Value.Y == y) 
+                if (point.Value.X == x && point.Value.Y == y)
                     return true;
-                    crossCount += 1;
+                crossCount += 1;
             }
             return (crossCount % 2) == 1;
         }
