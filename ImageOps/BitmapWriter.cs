@@ -14,8 +14,10 @@ namespace ImageOps
                 var data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
                 var buffer = (uint*)data.Scan0.ToPointer();
 
-                foreach (var color in reader)
-                    *(buffer++) = color.Argb;
+                var width = reader.Width;
+                for (int y = reader.Height - 1; y >= 0; y -= 1)
+                    for (int x = width - 1; x >= 0; x -= 1)
+                        buffer[y * width + x] = reader.Get(x, y).Argb;
 
                 bmp.UnlockBits(data);
                 return bmp;
