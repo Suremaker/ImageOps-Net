@@ -72,6 +72,7 @@
     <Compile Include="Sources\Readers\IPixelReader.cs" />
     <Compile Include="Sources\Readers\IVerifiedPixelReader.cs" />
     <Compile Include="Sources\Readers\RegionBlendingReader.cs" />
+    <Compile Include="Sources\Readers\RegionMaskedBlendingReader.cs" />
     <Compile Include="Sources\Readers\RepeatingReader.cs" />
     <Compile Include="Sources\Readers\SourceReader.cs" />
     <Compile Include="Sources\Readers\VerifiedPixelReaderProxy.cs" />

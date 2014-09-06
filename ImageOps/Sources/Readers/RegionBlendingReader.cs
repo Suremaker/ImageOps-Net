@@ -1,52 +1,42 @@
-using System;
-using System.Linq;
-using ImageOps.Blenders;
-using ImageOps.Sources.Regions;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace ImageOps.Sources.Readers
 {
-    internal class RegionMaskedBlendingReader : IDisposable
-    {
-        public RegionMaskedBlendingReader(BlendedRegion blendedRegion)
-        {
-            _blendingMethod = blendedRegion.BlendingMethod;
-            _reader = blendedRegion.Source.OpenReader().InVerifiedContext();
-            _region = blendedRegion.Region;
-            _leftMargin = blendedRegion.Region.BoundingBox.X;
-            _topMargin = blendedRegion.Region.BoundingBox.Y;
-        }
-
-        private readonly int _topMargin;
-        private readonly int _leftMargin;
-        private readonly IRegion _region;
-        private readonly IVerifiedPixelReader _reader;
-        private readonly IBlendingMethod _blendingMethod;
-
-        public PixelColor BlendWith(PixelColor current, int x, int y)
-        {
-            return _blendingMethod.Blend(current, _reader.VerifiedGet(x - _leftMargin, y - _topMargin));
-        }
-        public bool IsInside(int x, int y)
-        {
-            return _region.IsInside(x, y);
-        }
-
-        public void Dispose()
-        {
-            _reader.Dispose();
-        }
-    }
-
     internal class RegionBlendingReader : SourceReader<RegionBlendedSource>
     {
         private readonly IVerifiedPixelReader _reader;
-        private readonly RegionMaskedBlendingReader[] _regionReaders;
+        private readonly List<RegionMaskedBlendingReader> _regionReaders;
+        private readonly IDictionary<Point, List<RegionMaskedBlendingReader>> _sectorReaders = new Dictionary<Point, List<RegionMaskedBlendingReader>>();
+        private readonly int _sectorSize;
 
         public RegionBlendingReader(RegionBlendedSource source)
             : base(source)
         {
-            _regionReaders = source.Regions.Select(r => new RegionMaskedBlendingReader(r)).ToArray();
             _reader = source.OriginalSource.OpenReader().InVerifiedContext();
+            _regionReaders = new List<RegionMaskedBlendingReader>();
+            _sectorSize = Source.SectorSize;
+            foreach (var blendedRegion in source.Regions)
+                AddReader(blendedRegion);
+        }
+
+        private void AddReader(BlendedRegion blendedRegion)
+        {
+            var reader = new RegionMaskedBlendingReader(blendedRegion);
+            _regionReaders.Add(reader);
+            var box = blendedRegion.Region.BoundingBox;
+            for (int sx = box.X / _sectorSize; sx * _sectorSize < box.LastX; sx += 1)
+                for (int sy = box.Y / _sectorSize; sy * _sectorSize < box.LastY; sy += 1)
+                    AddToGroup(sx, sy, reader);
+        }
+
+        private void AddToGroup(int sectionX, int sectionY, RegionMaskedBlendingReader reader)
+        {
+            var point = new Point(sectionX, sectionY);
+            List<RegionMaskedBlendingReader> regions;
+            if (!_sectorReaders.TryGetValue(point, out regions))
+                _sectorReaders.Add(point, regions = new List<RegionMaskedBlendingReader>());
+            regions.Add(reader);
         }
 
         public override void Dispose()
@@ -58,10 +48,14 @@ namespace ImageOps.Sources.Readers
         public override PixelColor VerifiedGet(int x, int y)
         {
             PixelColor current = _reader.VerifiedGet(x, y);
-            foreach (var reader in _regionReaders)
+            List<RegionMaskedBlendingReader> readers;
+            if (!_sectorReaders.TryGetValue(new Point(x / _sectorSize, y / _sectorSize), out readers))
+                return current;
+
+            for (int i = 0; i < readers.Count; ++i)
             {
-                if (reader.IsInside(x, y))
-                    current = reader.BlendWith(current, x, y);
+                if (readers[i].IsInside(x, y))
+                    current = readers[i].BlendWith(current, x, y);
             }
             return current;
         }

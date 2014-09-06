@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ImageOps.Blenders;
 using ImageOps.Sources.Readers;
 using ImageOps.Sources.Regions;
@@ -16,11 +17,13 @@ namespace ImageOps.Sources
             OriginalSource = source;
             ImageWidth = source.ImageWidth;
             ImageHeight = source.ImageHeight;
+            SectorSize = Math.Max(16, Math.Max(ImageWidth, ImageHeight) / 8);
         }
 
         public RegionBlendedSource AddRegion(IRegion region, IPixelSource regionSource, IBlendingMethod blendingMethod)
         {
-            _regions.Add(new BlendedRegion(region, regionSource, blendingMethod));
+            var blendedRegion = new BlendedRegion(region, regionSource, blendingMethod);
+            _regions.Add(blendedRegion);
             return this;
         }
 
@@ -33,6 +36,8 @@ namespace ImageOps.Sources
 
         public int ImageWidth { get; private set; }
         public int ImageHeight { get; private set; }
+        public int SectorSize { get; private set; }
+
         public IPixelReader OpenReader()
         {
             return new RegionBlendingReader(this);
