@@ -4,6 +4,10 @@
     {
         public PixelColor Blend(PixelColor back, PixelColor front)
         {
+            if (front.A == Discrete.MaxColor)
+                return new PixelColor(front.Argb);
+            if (front.A == 0)
+                return new PixelColor(back.Argb);
             var backAlpha = back.A;
             var frontAlpha = front.A;
             var outAlpha = (byte)(backAlpha + frontAlpha - Discrete.MulRatio(backAlpha, frontAlpha));
