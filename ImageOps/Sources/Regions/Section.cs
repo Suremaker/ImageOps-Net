@@ -25,10 +25,14 @@ namespace ImageOps.Sources.Regions
         {
             if (!IsOnOppositeSides(P1.Y, P2.Y, startPoint.Y))
                 return null;
-            if (P1.X == P2.X)
-                return P1.X <= startPoint.X ? (PointF?)new Point(P1.X, startPoint.Y) : null;
+            if (P1.X == P2.X) //perpendicular
+                return new Point(P1.X, startPoint.Y);
+            if (P1.Y == P2.Y)
+                return ((P1.X < startPoint.X && P2.X >= startPoint.X) || (P2.X <= startPoint.X && P1.X > startPoint.X))
+                           ? (PointF?) new PointF(startPoint.X, startPoint.Y)
+                           : null;
             var crossX = (startPoint.Y - B) / A;
-            var isCrossed = !double.IsInfinity(crossX) && !double.IsNaN(crossX) && crossX <= startPoint.X && !(crossX == P1.X && startPoint.Y == P1.Y);
+            var isCrossed = !double.IsInfinity(crossX) && !double.IsNaN(crossX) && !(crossX == P1.X && startPoint.Y == P1.Y);
             return isCrossed ? (PointF?)new PointF((float)crossX, startPoint.Y) : null;
         }
 

@@ -22,7 +22,8 @@ namespace ImageOps.Sources.Regions
             if (!BoundingBox.IsInside(x, y))
                 return false;
             var px = new Point(x, y);
-            int crossCount = 0;
+            int leftCount = 0;
+            int rightCount = 0;
             foreach (var section in _sections)
             {
                 var point = section.IsCrossedByLeftHorizontalRay(px);
@@ -30,9 +31,12 @@ namespace ImageOps.Sources.Regions
                     continue;
                 if (point.Value.X == x && point.Value.Y == y)
                     return true;
-                crossCount += 1;
+                if (point.Value.X < x)
+                    leftCount += 1;
+                else
+                    rightCount += 1;
             }
-            return (crossCount % 2) == 1;
+            return (leftCount % 2) == 1 && (rightCount % 2) == 1;
         }
 
         public PixelRectangle BoundingBox { get; private set; }

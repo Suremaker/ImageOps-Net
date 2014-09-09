@@ -51,7 +51,7 @@ namespace ImageOps.Example
             sw.Stop();
             Console.WriteLine(sw.Elapsed);
             sw.Start();
-            clouds.BlendRegion(new PolygonRegion(new Point(0, 0), new Point(width / 2 - 1, 0), new Point(width / 2 - 1, height / 2 - 1), new Point(width / 2 - 15, height / 2 - 25)), Color.Red.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
+            clouds.BlendRegion(new PolygonRegion(new Point(0, 0), new Point(width / 2 - 15, 25), new Point(width / 2 - 1, height / 2 - 1), new Point(width / 2 - 15, height / 2 - 25)), Color.Red.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
                 .BlendRegion(new PolygonRegion(new Point(width / 2, 0), new Point(width - 1, 0), new Point(width - 1, height / 2 - 1)), Color.Green.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
                 .BlendRegion(new PolygonRegion(new Point(0, height / 2), new Point(width / 2 - 1, height / 2), new Point(width / 2 - 1, height - 1)), Color.Blue.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
                 .BlendRegion(new PolygonRegion(new Point(width / 2, height / 2), new Point(width - 1, height / 2), new Point(width - 1, height - 1)), Color.Yellow.AsPixelSource(width / 2, height / 2), BlendingMethods.Multiply)
