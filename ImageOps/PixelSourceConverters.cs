@@ -38,5 +38,10 @@ namespace ImageOps
         {
             return new CroppedSource(source, rectangle);
         }
+
+        public static IPixelSource Crop(this IPixelSource source, int x, int y, int width, int height)
+        {
+            return new CroppedSource(source, new PixelRectangle(x, y, width, height));
+        }
     }
 }
