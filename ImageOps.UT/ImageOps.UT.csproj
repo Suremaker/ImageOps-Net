@@ -44,6 +44,7 @@
     <Compile Include="Sources\Format32BppRgbBitmapSourceTests.cs" />
     <Compile Include="Helpers\BitmapSourceTestBase.cs" />
     <Compile Include="Sources\ColorSourceTests.cs" />
+    <Compile Include="Sources\RegionBlendedSourceTests.cs" />
     <Compile Include="Writers\BitmapWriterTests.cs" />
     <Compile Include="Sources\BlendedSourceTests.cs" />
     <Compile Include="PixelColorTests.cs" />
