@@ -7,26 +7,34 @@ namespace ImageOps.PerformanceTests.Scenarios
 {
     public class TriangleRegionBlendedSource : SourceTestCase
     {
+        protected virtual int TriangleCount { get { return 20; } }
+        protected virtual int TriangleSize { get { return 6; } }
+
         protected override IPixelSource CreateSource(int width, int height)
         {
             var rand = new Random(1256);
-            var triangleSize = 6;
-            var layer = Utils.CreateColorSource(triangleSize, triangleSize, Color.Blue);
+            var layer = Utils.CreateColorSource(TriangleSize, TriangleSize, Color.Blue);
             var background = Utils.CreateColorSource(width, height);
 
-            for (int i = 0; i < 20; ++i)
+            for (int i = 0; i < TriangleCount; ++i)
             {
-                var x = rand.Next(width - triangleSize);
-                var y = rand.Next(height - triangleSize);
+                var x = rand.Next(width - TriangleSize);
+                var y = rand.Next(height - TriangleSize);
                 background = background.BlendRegion(
                     Regions.Polygon(
                         new Point(x, y),
-                        new Point(x + triangleSize - 1, y),
-                        new Point(x + triangleSize - 1, y + triangleSize - 1)),
+                        new Point(x + TriangleSize - 1, y),
+                        new Point(x + TriangleSize - 1, y + TriangleSize - 1)),
                     layer,
                     BlendingMethods.Normal);
             }
             return background;
         }
+    }
+
+    public class BiggerTriangleRegionBlendedSource : TriangleRegionBlendedSource
+    {
+        protected override int TriangleCount { get { return 1000; } }
+        protected override int TriangleSize { get { return 12; } }
     }
 }

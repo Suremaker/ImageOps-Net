@@ -29,9 +29,9 @@ namespace ImageOps.Sources.Regions
                 var point = section.IsCrossedByLeftHorizontalRay(px);
                 if (point == null)
                     continue;
-                if (point.Value.X == x && point.Value.Y == y)
+                if (point.Value == x)
                     return true;
-                if (point.Value.X < x)
+                if (point.Value < x)
                     leftCount += 1;
                 else
                     rightCount += 1;
