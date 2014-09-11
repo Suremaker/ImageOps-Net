@@ -27,11 +27,11 @@ namespace ImageOps.Sources.Regions
             foreach (var section in _sections)
             {
                 var point = section.IsCrossedByLeftHorizontalRay(px);
-                if (point == null)
+                if (double.IsNaN(point))
                     continue;
-                if (point.Value == x)
+                if (point == x)
                     return true;
-                if (point.Value < x)
+                if (point < x)
                     leftCount += 1;
                 else
                     rightCount += 1;

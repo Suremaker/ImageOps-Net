@@ -24,19 +24,18 @@ namespace ImageOps.Sources.Regions
         public double A { get; private set; }
         public double B { get; private set; }
 
-        public double? IsCrossedByLeftHorizontalRay(Point startPoint)
+        public double IsCrossedByLeftHorizontalRay(Point startPoint)
         {
             if (!IsOnOppositeSides(P1.Y, P2.Y, startPoint.Y))
-                return null;
+                return double.NaN;
             if (P1.X == P2.X) //perpendicular
                 return P1.X;
             if (P1.Y == P2.Y)
                 return IsOnOppositeSides(P1.X, P2.X, startPoint.X)
-                           ? (double?)startPoint.X
-                           : null;
+                    ? startPoint.X
+                    : double.NaN;
             var crossX = (startPoint.Y - B) * _aMultiplier;
-            var isCrossed = (startPoint.Y != P1.Y || crossX != P1.X);
-            return isCrossed ? (double?)crossX : null;
+            return (startPoint.Y != P1.Y || crossX != P1.X) ? crossX : double.NaN;
         }
 
         private static bool IsOnOppositeSides(int sy1, int sy2, int py)
