@@ -1,26 +1,25 @@
+using System;
+
 namespace ImageOps.Sources.Readers
 {
-    internal class BlendingReader : SourceReader<BlendedSource>
+    public abstract class BlendingReader : PixelReader
     {
-        private readonly IVerifiedPixelReader _foreground;
-        private readonly IVerifiedPixelReader _background;
+        protected IVerifiedPixelReader ForegroundReader { get; private set; }
+        protected IVerifiedPixelReader BackgroundReader { get; private set; }
 
-        public BlendingReader(BlendedSource source)
-            : base(source)
+        protected BlendingReader(IPixelSource background, IPixelSource foreground)
+            : base(background.ImageWidth, background.ImageHeight)
         {
-            _foreground = source.ForegroundSource.OpenReader().InVerifiedContext();
-            _background = source.BackgroundSource.OpenReader().InVerifiedContext();
+            if (background.ImageWidth != foreground.ImageWidth || background.ImageHeight != foreground.ImageHeight)
+                throw new ArgumentException(string.Format("Background layer size does not match size of foreground layer: Background={0}, Foreground={1}", background, foreground));
+            BackgroundReader = background.OpenReader().InVerifiedContext();
+            ForegroundReader = foreground.OpenReader().InVerifiedContext();
         }
 
         public override void Dispose()
         {
-            _foreground.Dispose();
-            _background.Dispose();
-        }
-
-        public override PixelColor VerifiedGet(int x, int y)
-        {
-            return Source.BlendingMethod.Blend(_background.VerifiedGet(x, y), _foreground.VerifiedGet(x, y));
+            ForegroundReader.Dispose();
+            BackgroundReader.Dispose();
         }
     }
 }

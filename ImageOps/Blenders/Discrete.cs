@@ -73,10 +73,5 @@ namespace ImageOps.Blenders
         {
             return (byte)(MulRatio(frontColor, ratio) + CompRatio(backColor, ratio));
         }
-
-        public static bool HasNothingToBlend(byte backAlpha, byte frontAlpha)
-        {
-            return backAlpha == 0 || frontAlpha == 0;
-        }
     }
 }

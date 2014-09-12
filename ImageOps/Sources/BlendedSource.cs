@@ -27,7 +27,7 @@ namespace ImageOps.Sources
 
         public IPixelReader OpenReader()
         {
-            return new BlendingReader(this);
+            return BlendingMethod.OpenBlendingReader(BackgroundSource, ForegroundSource);
         }
 
         public void Dispose()

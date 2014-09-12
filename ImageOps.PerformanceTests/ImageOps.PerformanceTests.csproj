@@ -56,6 +56,7 @@
     <Compile Include="Scenarios\GrainMergeBlendedSource.cs" />
     <Compile Include="Scenarios\MaskBlendedSource.cs" />
     <Compile Include="Scenarios\MultipleLayersScenario.cs" />
+    <Compile Include="Scenarios\NormalBlendedArgbSource.cs" />
     <Compile Include="Scenarios\NormalBlendedSource.cs" />
     <Compile Include="Scenarios\MultiplyBlendedSource.cs" />
     <Compile Include="Scenarios\RectangleRegionBlendedSource.cs" />

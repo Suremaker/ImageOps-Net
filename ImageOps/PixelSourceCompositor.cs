@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ImageOps.Blenders;
 using ImageOps.Sources;
 using ImageOps.Sources.Regions;
