@@ -38,13 +38,17 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\SourceConverterTests.cs" />
+    <Compile Include="Sources\ComputedSourceTests.cs" />
     <Compile Include="Sources\ExpandedSourceTests.cs" />
     <Compile Include="Sources\Format24BppRgbBitmapSourceTests.cs" />
     <Compile Include="Sources\Format32BppArgbBitmapSourceTests.cs" />
     <Compile Include="Sources\Format32BppRgbBitmapSourceTests.cs" />
     <Compile Include="Helpers\BitmapSourceTestBase.cs" />
     <Compile Include="Sources\ColorSourceTests.cs" />
+    <Compile Include="Sources\ProcessedSourceTests.cs" />
     <Compile Include="Sources\RegionBlendedSourceTests.cs" />
+    <Compile Include="Sources\RepeatedSourceTests.cs" />
     <Compile Include="Writers\BitmapWriterTests.cs" />
     <Compile Include="Sources\BlendedSourceTests.cs" />
     <Compile Include="PixelColorTests.cs" />

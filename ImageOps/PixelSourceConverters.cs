@@ -1,4 +1,5 @@
-﻿using ImageOps.Sources;
+﻿using System;
+using ImageOps.Sources;
 
 namespace ImageOps
 {
@@ -42,6 +43,16 @@ namespace ImageOps
         public static IPixelSource Crop(this IPixelSource source, int x, int y, int width, int height)
         {
             return new CroppedSource(source, new PixelRectangle(x, y, width, height));
+        }
+
+        public static IPixelSource Process(this IPixelSource source, Func<PixelColor, PixelColor> colorFunction)
+        {
+            return new ProcessedSource(source, colorFunction);
+        }
+
+        public static IPixelSource InvertColors(this IPixelSource source)
+        {
+            return source.Process(p => PixelColor.FromArgb(p.A, (byte) (255 - p.R), (byte) (255 - p.G), (byte) (255 - p.B)));
         }
     }
 }
